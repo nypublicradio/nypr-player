@@ -1,0 +1,12 @@
+<div class="volume-control">
+  <div class="volume-slider-wrapper">
+    <div class="volume-slider">
+      <div class="volume-slider-track" style={{trackWidth}}></div>
+      <div class="volume-slider-handle" style={{handlePosition}}></div>
+    </div>
+  </div>
+  <button class="volume-button" {{action 'toggleMute'}}>
+    {{nypr-svg className="icon volume-button--unmuted" icon="volume"}}
+    {{nypr-svg className="icon volume-button--muted" icon="mute"}}
+  </button>
+</div>
