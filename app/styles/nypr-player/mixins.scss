@@ -1,0 +1,17 @@
+@mixin mq($mq...) {
+    @if length(keywords($mq)) == 1 {
+        @media only screen and #{$mq} {
+            @content;
+        }
+    } @else {
+        $query: 'only screen';
+
+        @each $media in $mq {
+            $query: "#{$query} and #{$media}";
+        }
+
+        @media #{$query} {
+            @content;
+        }
+    }
+}

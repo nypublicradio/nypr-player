@@ -5,8 +5,8 @@ import get from 'ember-metal/get';
 export default Ember.Component.extend({
   layout,
   tagName           : 'button',
-  classNames        : ['persistent-queuebutton'],
-  classNameBindings : ['isOpenModal', 'isFloating:floating-queuebutton'],
+  classNames        : ['nypr-player-queuebutton'],
+  classNameBindings : ['isOpenModal', 'isFloating'],
   queueLength       : null,
   showModal         : null,
   closeModal        : null,

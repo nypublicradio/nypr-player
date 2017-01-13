@@ -51,7 +51,8 @@
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.7",
-    "ember-cli-htmlbars": "^1.0.10"
+    "ember-cli-htmlbars": "^1.0.10",
+    "nypr-ui": "git+ssh://git@github.com/nypublicradio/nypr-ui.git"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

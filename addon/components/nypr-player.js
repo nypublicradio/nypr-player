@@ -9,7 +9,7 @@ import layout from '../templates/components/nypr-player';
 export default Ember.Component.extend({
   layout,
   hifi                  : service(),
-  classNames            : ['persistent-player', 'l-flexcontent', 'l-highlight--blur'],
+  classNames            : ['nypr-player', 'l-flexcontent', 'l-highlight--blur'],
   classNameBindings     : ['isAudiostream'],
 
   isPlaying             : reads('hifi.isPlaying'),

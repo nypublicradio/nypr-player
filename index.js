@@ -2,5 +2,9 @@
 'use strict';
 
 module.exports = {
-  name: 'nypr-player'
+  name: 'nypr-player',
+
+  isDevelopingAddon: function() {
+    return true;
+  }
 };
