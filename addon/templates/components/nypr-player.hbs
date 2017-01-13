@@ -69,21 +69,22 @@
           streamsIndexUrlTarget   = streamsIndexUrlTarget
         }}
       {{else}}
-        {{#if media.isSmallOnly}}
-          {{nypr-player.timelabel
+
+        {{#if media.isNyprPlayerSmallOnly}}
+          {{nypr-player.time-label
             position = hifi.position
             duration = hifi.duration}}
         {{/if}}
 
-        <div class="persistent-progress">
+        <div class="nypr-player-progress-area">
           {{nypr-player.progress-meter
             downloaded  = hifi.percentLoaded
             position    = hifi.position
             duration    = hifi.duration
             setPosition = (action 'setPosition')}}
 
-          {{#if media.isMediumAndUp}}
-            {{nypr-player.timelabel
+          {{#if media.isNyprPlayerMediumAndUp}}
+            {{nypr-player.time-label
               position = hifi.position
               duration = hifi.duration}}
           {{/if}}

@@ -1,5 +1,5 @@
 {{!-- Show Link --}}
-{{#if (and showTitle media.isMediumAndUp)}}
+{{#if (and showTitle media.isNyprPlayerMediumAndUp)}}
   <a href='{{showUrl}}'
      title='{{showTitle}}'
      class='link--white'
@@ -29,7 +29,7 @@
   {{songDetails}}
 {{/if}}
 
-{{#if (and showTitle media.isSmallOnly)}}
+{{#if (and showTitle media.isNyprPlayerSmallOnly)}}
   {{#if (or storyTitle songDetails)}} - {{/if}}
   <a href='{{showUrl}}'
      title='{{showTitle}}'
