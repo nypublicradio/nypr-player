@@ -1,9 +1,11 @@
-@import 'compass';
-@import 'normalize';
-
-@import 'nypr-player/variables';
-@import 'nypr-player/mixins';
-@import 'nypr-player/progress';
+@import "compass";
+@import "nypr-player/normalize";
+@import "nypr-player/variables";
+@import "nypr-player/mixins";
+@import "nypr-player/utils";
+@import "nypr-player/progress";
+@import "nypr-player/volume";
+@import "nypr-ui";
 
 .nypr-player {
   height: 95px;
