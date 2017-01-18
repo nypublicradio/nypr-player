@@ -7,7 +7,7 @@ $slider-spacing-left:  $handle-diameter;
 $slider-spacing-right: $handle-radius + 2px;
 $slider-spacing: $slider-spacing-left + $slider-spacing-right;
 
-.nypr-player-volume {
+.nypr-player-button.mod-volume {
   margin-top: 0;
   min-width: $button-width;
   height: 100%;
@@ -84,7 +84,7 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
   @include translateX(-$handle-radius);
 }
 
-.nypr-player-volume-button {
+.nypr-player-button.mod-volume {
   display: inline-block;
   flex-basis: $button-width;
   min-width: $button-width;
@@ -109,20 +109,24 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
   }
 }
 
-.nypr-player-volume-button {
-    > .nypr-player-icon {
-      transition: fill 0.2s ease-in-out, opacity 0.2s ease-in-out;
-    }
-    > .nypr-player-volume-button.is-muted {
-      opacity: 0;
-    }
+.nypr-player-volume-control {
+  > .nypr-player-icon {
+    transition: fill 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  .nypr-player-icon.mod-volume-unmuted {
+    opacity: 1;
+  }
+  .nypr-player-icon.mod-volume-muted {
+    opacity: 0;
+  }
 }
 
-.is-muted .nypr-player-volume-button {
-    > .nypr-player-volume-button.is-unmuted {
-      opacity: 0;
-    }
-    > .nypr-player-volume-button.is-muted {
-      opacity: 1;
-    }
+.nypr-player-volume-control.is-muted {
+  .nypr-player-icon.mod-volume-unmuted {
+    opacity: 0;
+  }
+  .nypr-player-icon.mod-volume-muted {
+    opacity: 1;
+  }
 }

@@ -7,9 +7,9 @@ import { htmlSafe } from 'ember-string';
 
 export default Ember.Component.extend({
   layout,
-  classNames              : 'nypr-player-volume',
-  classNameBindings       : ['isMuted'],
-  volumeInPercent         : computed('volume', 'isMuted', {
+  classNames: ['nypr-player-volume'],
+  classNameBindings: ['isMuted'],
+  volumeInPercent: computed('volume', 'isMuted', {
     get() {
       if (get(this, 'isMuted')) {
         return 0;
@@ -20,10 +20,10 @@ export default Ember.Component.extend({
       return v;
     }
   }),
-  trackWidth              : computed('volumeInPercent', function() {
+  trackWidth: computed('volumeInPercent', function() {
     return htmlSafe(`width: ${get(this, 'volumeInPercent')}%;`);
   }),
-  handlePosition          : computed('volumeInPercent', function() {
+  handlePosition: computed('volumeInPercent', function() {
     return htmlSafe(`left : ${get(this, 'volumeInPercent')}%;`);
   }),
   click({target, pageX}) {

@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   layout,
   tagName           : 'button',
   classNames        : ['nypr-player-queue-button'],
-  classNameBindings : ['isOpenModal', 'isFloating'],
+  classNameBindings : ['isOpenModal:is-open', 'isFloating'],
   queueLength       : null,
   showModal         : null,
   closeModal        : null,
@@ -17,7 +17,7 @@ export default Ember.Component.extend({
     if (get(this, 'isOpenModal')) {
       get(this, 'closeModal')();
     } else {
-      get(this, 'showModal')('queue-history');
+      get(this, 'showModal')();
     }
   },
   didUpdateAttrs({oldAttrs}) {
