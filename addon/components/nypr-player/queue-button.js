@@ -5,7 +5,7 @@ import get from 'ember-metal/get';
 export default Ember.Component.extend({
   layout,
   tagName           : 'button',
-  classNames        : ['nypr-player-queuebutton'],
+  classNames        : ['nypr-player-queue-button'],
   classNameBindings : ['isOpenModal', 'isFloating'],
   queueLength       : null,
   showModal         : null,

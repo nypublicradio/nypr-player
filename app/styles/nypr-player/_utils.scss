@@ -13,7 +13,7 @@
  * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
 */
 
-.visuallyhidden {
+.u-visuallyhidden {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -30,8 +30,8 @@
  * https://www.drupal.org/node/897638
  */
 
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
+.u-visuallyhidden.focusable:active,
+.u-visuallyhidden.focusable:focus {
     clip: auto;
     height: auto;
     margin: 0;
@@ -45,7 +45,7 @@
  * Hide visually and from screen readers, but maintain layout
  */
 
-.invisible {
+.u-invisible {
     visibility: hidden;
 
 }
@@ -62,12 +62,12 @@
  *    `:before` to contain the top-margins of child elements.
 */
 
-.clearfix:before,
-.clearfix:after {
+.u-clearfix:before,
+.u-clearfix:after {
     content: " "; /* 1 */
     display: table; /* 2 */
 }
 
-.clearfix:after {
+.u-clearfix:after {
     clear: both;
 }

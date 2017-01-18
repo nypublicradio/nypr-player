@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   'data-test-selector': 'listen-button',
 
   tagName             : 'button',
-  classNames          : ['listen-button', 'white-hollow'],
+  classNames          : ['nypr-player-listen-button nypr-player-button'],
   classNameBindings   : ['isHovering', 'state'],
   attributeBindings   : ['aria-label', 'title', 'disabled', 'data-test-selector'],
 

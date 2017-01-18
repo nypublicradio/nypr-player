@@ -21,15 +21,17 @@
         onDismissNotification = integration.onDismissNotification
 
         revealNotificationBar = integration.revealNotificationBar
-  as |area player|}}
-  {{#if area.queue}}
-    {{player.queueButton
-        queueLength           = 0
-        showModal             = (action 'showModal')
-        closeModal            = (action 'closeModal')
-        isOpenModal           = modal}}
-  {{else if area.share}}
-  {{else if area.notification}}
-    {{! This is just the message, the dismiss handler and the flag to show this message is above}}
-  {{/if}}
-{{/nypr-player}}
+    as |area player|}}
+    {{#if area.queue}}
+      {{player.queueButton
+          queueLength           = 0
+          showModal             = (action 'showModal')
+          closeModal            = (action 'closeModal')
+          isOpenModal           = modal}}
+    {{else if area.share}}
+    {{else if area.notification}}
+      {{! This is just the message, the dismiss handler and the flag to show this message is above}}
+    {{/if}}
+
+  {{/nypr-player}}
+{{/nypr-player-dummy-integration}}

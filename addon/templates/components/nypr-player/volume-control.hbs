@@ -1,12 +1,12 @@
-<div class="volume-control">
-  <div class="volume-slider-wrapper">
-    <div class="volume-slider">
-      <div class="volume-slider-track" style={{trackWidth}}></div>
-      <div class="volume-slider-handle" style={{handlePosition}}></div>
+<div class="nypr-player-volume-control">
+  <div class="nypr-player-volume-slider-wrapper">
+    <div class="js-volume-slider volume-slider">
+      <div class="nypr-player-volume-slider-track" style={{trackWidth}}></div>
+      <div class="js-volume-slider-handle nypr-player-volume-slider" style={{handlePosition}}></div>
     </div>
   </div>
-  <button class="volume-button" {{action 'toggleMute'}}>
-    {{nypr-svg className="icon volume-button--unmuted" icon="volume"}}
-    {{nypr-svg className="icon volume-button--muted" icon="mute"}}
+  <button class="nypr-player-volume-button" {{action 'toggleMute'}}>
+    {{nypr-svg className="nypr-player-icon nypr-player-volume-icon is-unmuted" icon="volume"}}
+    {{nypr-svg className="nypr-player-icon nypr-player-volume-icon is-muted" icon="mute"}}
   </button>
 </div>

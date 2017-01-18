@@ -45,7 +45,7 @@ export default Ember.Component.extend({
 
     if (get(this, 'isLoaded') && isLeftClick && isRealMouse) {
       this._updateAudioPosition(e);
-      if (e.target.classList.contains('nypr-player-progress-playhead')) {
+      if (e.target.classList.contains('js-nypr-player-progress-playhead')) {
         this._startDragging();
         // prevent dragging and selecting
         e.preventDefault();
@@ -72,7 +72,7 @@ export default Ember.Component.extend({
   touchStart(e) {
     // prevent emulated mouse events
     e.preventDefault();
-    if (get(this, 'isLoaded') && e.target.classList.contains('nypr-player-progress-playhead')) {
+    if (get(this, 'isLoaded') && e.target.classList.contains('js-nypr-player-progress-playhead')) {
       let touch = e.originalEvent.changedTouches[0];
       this._updateAudioPosition(touch);
       set(this, 'isTouching', true);
@@ -82,7 +82,7 @@ export default Ember.Component.extend({
   touchEnd(e) {
     // prevent emulated mouse events
     e.preventDefault();
-    if (get(this, 'isLoaded') && e.target.classList.contains('nypr-player-progress-playhead')) {
+    if (get(this, 'isLoaded') && e.target.classList.contains('js-nypr-player-progress-playhead')) {
       let touch = e.originalEvent.changedTouches[0];
       this._updateAudioPosition(touch);
       set(this, 'isTouching', false);
@@ -122,14 +122,14 @@ export default Ember.Component.extend({
   },
   _updateHandlePosition(event) {
     if (event.pageX) {
-      let offset = this.$('.nypr-player-progress-bg').offset();
+      let offset = this.$('.js-nypr-player-progress-bg').offset();
       let p;
       if (event.pageX < offset.left) {
         p = 0;
-      } else if (event.pageX > offset.left + this.$('.nypr-player-progress-bg').width()) {
+      } else if (event.pageX > offset.left + this.$('.js-nypr-player-progress-bg').width()) {
         p = 1;
       } else {
-        p = (event.pageX - offset.left) / this.$('.nypr-player-progress-bg').width();
+        p = (event.pageX - offset.left) / this.$('.js-nypr-player-progress-bg').width();
       }
       set(this, 'handlePosition', p);
       return p;

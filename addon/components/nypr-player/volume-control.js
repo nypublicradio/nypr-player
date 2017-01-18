@@ -7,7 +7,7 @@ import { htmlSafe } from 'ember-string';
 
 export default Ember.Component.extend({
   layout,
-  classNames              : 'volume',
+  classNames              : 'nypr-player-volume',
   classNameBindings       : ['isMuted'],
   volumeInPercent         : computed('volume', 'isMuted', {
     get() {
@@ -33,19 +33,19 @@ export default Ember.Component.extend({
     if (window.getSelection && window.getSelection().removeAllRanges) {
       window.getSelection().removeAllRanges();
     }
-    if (e.target.classList.contains('volume-slider-handle')) {
-      this.$().on('mousemove', '.volume-slider', this.click.bind(this));
+    if (e.target.classList.contains('js-volume-slider-handle')) {
+      this.$().on('mousemove', '.js-volume-slider', this.click.bind(this));
     }
   },
   mouseUp() {
-    this.$().off('mousemove', '.volume-slider');
+    this.$().off('mousemove', '.js-volume-slider');
   },
   mouseLeave() {
-    this.$().off('mousemove', '.volume-slider');
+    this.$().off('mousemove', '.js-volume-slider');
   },
   _setVolume(target, x) {
-    if (!isEmpty(this.$(target).closest('.volume-slider'))) {
-      let $controls = this.$('.volume-slider');
+    if (!isEmpty(this.$(target).closest('.js-volume-slider'))) {
+      let $controls = this.$('.js-volume-slider');
       let offset = $controls.offset();
       let leftLimit = offset.left;
       let rightLimit = offset.left + $controls.width();

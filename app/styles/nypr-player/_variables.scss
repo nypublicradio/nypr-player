@@ -1,7 +1,18 @@
-$nypr-player-medium-breakpoint : 801;
-$nypr-player-medium-and-up     : "(min-width: #{$nypr-player-medium-breakpoint}px)";
-$nypr-player-small-only        : "(max-width: #{$nypr-player-medium-breakpoint - 1}px)";
+$nypr-player-base-font              : 16 !default;
+$nypr-player-transition-timing      : 250ms !default;
+$nypr-player-transition-timing-queue: 150ms !default;
 
-$nypr-player-zindex            : 1200 !default;
-$nypr-player-backdrop-zindex   : -1 !default;
-$nypr-player-backdrop-color    : rgba(#333, 0.75) !default;
+$nypr-player-medium-breakpoint      : 801;
+$nypr-player-medium-and-up          : "(min-width: #{$nypr-player-medium-breakpoint}px)";
+$nypr-player-small-only             : "(max-width: #{$nypr-player-medium-breakpoint - 1}px)";
+
+$nypr-player-zindex                 : 1200 !default;
+$nypr-player-backdrop-zindex        : -1 !default;
+$nypr-player-backdrop-color         : rgba(#333, 0.75) !default;
+
+
+$nypr-player-blue                   : #128cf4 !default;
+$nypr-player-darkblue               : #1068b2 !default;
+$nypr-player-lightgray              : #888 !default;
+$nypr-player-darkgray               : #444 !default;
+$nypr-player-gray                   : #666 !default;

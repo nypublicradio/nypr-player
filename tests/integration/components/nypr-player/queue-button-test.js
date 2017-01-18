@@ -20,7 +20,7 @@ test('it calls the external showModal action', function(assert) {
 
   this.set('externalAction', externalAction);
   this.render(hbs`{{nypr-player/queue-button showModal=externalAction}}`);
-  this.$('.persistent-queuebutton').click();
+  this.$('.nypr-player-queue-button').click();
 });
 
 test('it calls the external closeModal action', function(assert) {
@@ -31,13 +31,13 @@ test('it calls the external closeModal action', function(assert) {
   this.set('externalAction', externalAction);
   this.set('isOpenModal', true);
   this.render(hbs`{{nypr-player/queue-button isOpenModal=isOpenModal closeModal=externalAction}}`);
-  this.$('.persistent-queuebutton').click();
+  this.$('.nypr-player-queue-button').click();
 });
 
 test('it adds an animate class if the queuelength is increased', function(assert) {
   this.set('queueLength', 0);
   this.render(hbs`{{nypr-player/queue-button queueLength=queueLength}}`);
-  assert.notOk(this.$('.persistent-queuebutton').hasClass('animate'), 'no animate class at start');
+  assert.notOk(this.$('.nypr-player-queue-button').hasClass('animate'), 'no animate class at start');
   this.set('queueLength', 1);
-  assert.ok(this.$('.persistent-queuebutton').hasClass('animate'), 'animate class is added');
+  assert.ok(this.$('.nypr-player-queue-button').hasClass('animate'), 'animate class is added');
 });
