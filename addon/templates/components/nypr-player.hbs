@@ -1,7 +1,6 @@
 {{#liquid-if displayNotificationBar class='notification-wrapper'}}
   {{#nypr-player.notification dismissNotification = (action 'dismissNotification')}}
-    {{yield (named-yield-content 'notificationArea')}}
-
+    {{yield (hash for=(component 'content-for' yieldName='notification'))}}
   {{/nypr-player.notification}}
 {{/liquid-if}}
 
@@ -25,11 +24,11 @@
   {{#g.center}}
     <div class="nypr-player-info">
       <div class="nypr-player-infoline">
-        {{yield (named-yield-content 'titleArea')}}
+        {{yield (hash for=(component 'content-for' yieldName='title'))}}
       </div>
 
       {{#if isAudiostream}}
-        {{yield (named-yield-content 'secondaryInfoArea')}}
+        {{yield (hash for=(component 'content-for' yieldName='secondaryInfo'))}}
       {{else}}
         {{#if media.isNyprPlayerSmallOnly}}
           {{nypr-player.time-label
@@ -50,7 +49,6 @@
               duration = hifi.duration}}
           {{/if}}
         </div>
-        <!-- .persistent-progress -->
       {{/if}}
     </div>
   {{/g.center}}
@@ -65,7 +63,7 @@
           isMuted    = hifi.isMuted}}
       {{/if}}
 
-      {{yield (named-yield-content 'actionArea' (hash queueButton=(component 'nypr-player.queue-button')))}}
+      {{yield (hash for=(component 'content-for' yieldName='action' yieldArguments=(hash queueButton=(component 'nypr-player.queue-button'))))}}
     </div>
   {{/g.right}}
 {{/holygrail-layout}}

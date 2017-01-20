@@ -13,9 +13,8 @@ test('it renders', function(assert) {
 });
 
 test('it calls the external showModal action', function(assert) {
-  function externalAction(which) {
+  function externalAction() {
     assert.ok('it was called');
-    assert.equal(which, 'queue-history', 'the proper modal name is passed');
   }
 
   this.set('externalAction', externalAction);

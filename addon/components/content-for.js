@@ -5,22 +5,20 @@ import layout from '../templates/components/content-for';
 let ContentFor = Ember.Component.extend({
   layout,
   tagName: '',
-  hasContentForYield: computed('yields', 'contentName', function() {
-    return (this.get('yields.yieldName') === this.get('contentName'));
+
+  hasContentForYield: computed('contentName', 'yieldName', function() {
+    return (this.get('contentName') === this.get('yieldName'));
   }),
 
-  content: computed('hasContentForYield', 'yields', function() {
+  yieldContent: computed('hasContentForYield', 'yieldArguments', function() {
     if (this.get('hasContentForYield')) {
-      return this.get('yields.yieldArguments');
-    }
-    else {
-      return {};
+      return this.get('yieldArguments');
     }
   })
 });
 
 ContentFor.reopenClass({
-  positionalParams: ['contentName', 'yields']
+  positionalParams: ['contentName']
 });
 
 export default ContentFor;

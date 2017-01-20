@@ -21,27 +21,25 @@
         onDismissNotification = integration.onDismissNotification
 
         revealNotificationBar = integration.revealNotificationBar
-    as |yields|}}
+    as |content|}}
+      {{#content.for 'title' as |args|}}
+        {{integration.storyTitle}}
+      {{/content.for}}
 
-    {{#content-for 'notificationArea' yields as |args|}}
+      {{#content.for 'notification'}}
+        notification
+      {{/content.for}}
 
-    {{/content-for}}
+      {{#content.for 'secondaryInfo' as |args|}}
+        {{integration.streamName}}
+      {{/content.for}}
 
-    {{#content-for 'titleArea' yields as |args|}} --}}
-      titleArea
-    {{/content-for}}
-
-    {{#content-for 'secondaryInfoArea' yields as |args|}}
-      blah blah blah
-    {{/content-for}}
-
-    {{#content-for 'actionArea' yields as |args|}}
-      {{args.queueButton
-          queueLength           = 0
-          showModal             = (action 'showModal')
-          closeModal            = (action 'closeModal')
-          isOpenModal           = modal}}
-    {{/content-for}}
-
+      {{#content.for 'action' as |args|}}
+        {{args.queueButton
+            queueLength           = 0
+            showModal             = (action 'showModal')
+            closeModal            = (action 'closeModal')
+            isOpenModal           = modal}}
+      {{/content.for}}
   {{/nypr-player}}
 {{/nypr-player-dummy-integration}}

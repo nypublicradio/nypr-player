@@ -7,10 +7,10 @@ moduleForComponent('nypr-player', 'Integration | Component | nypr player', {
 
 test('it does not render notification area when revealNotificationBar is false', function(assert) {
   this.set('revealNotificationBar', false);
-  this.render(hbs`{{#nypr-player revealNotificationBar=revealNotificationBar as |area player|}}
-      {{#if area.notification}}
+  this.render(hbs`{{#nypr-player revealNotificationBar=revealNotificationBar as |content|}}
+      {{#content.for 'notification'}}
         NOTIFICATION TEST
-      {{/if}}
+      {{/content.for}}
     {{/nypr-player}}
   `);
 
@@ -21,10 +21,10 @@ test('it does not render notification area when revealNotificationBar is false',
 
 test('it renders notification area when revealNotificationBar is true', function(assert) {
   this.set('revealNotificationBar', true);
-  this.render(hbs`{{#nypr-player revealNotificationBar=revealNotificationBar as |area player|}}
-      {{#if area.notification}}
+  this.render(hbs`{{#nypr-player revealNotificationBar=revealNotificationBar as |content|}}
+      {{#content.for 'notification'}}
         NOTIFICATION TEST
-      {{/if}}
+      {{/content.for}}
     {{/nypr-player}}
   `);
 
