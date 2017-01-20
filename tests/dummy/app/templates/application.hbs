@@ -1,25 +1,16 @@
 {{#nypr-player-dummy-integration as |integration|}}
     {{#nypr-player
         currentTitle          = integration.currentTitle
-
         backdropImageUrl      = integration.backdropImageUrl
-
         onPlay                = integration.onPlay
         onPause               = integration.onPause
-        onDismissNotification = integration.onDismissNotification
-
-        revealNotificationBar = integration.revealNotificationBar
     as |content|}}
       {{#content.for 'trackInfo' as |args|}}
         {{integration.storyTitle}}
       {{/content.for}}
 
       {{#content.for 'streamInfo' as |args|}}
-      {{integration.streamName}}
-      {{/content.for}}
-
-      {{#content.for 'notification'}}
-        notification
+        {{integration.streamName}}
       {{/content.for}}
 
       {{#content.for 'action' as |args|}}

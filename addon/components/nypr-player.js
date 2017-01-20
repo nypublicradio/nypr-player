@@ -1,9 +1,7 @@
 import Ember from 'ember';
 import service from 'ember-service/inject';
-import computed, { reads, not } from 'ember-computed';
+import computed, { reads } from 'ember-computed';
 import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-
 import layout from '../templates/components/nypr-player';
 
 export default Ember.Component.extend({
@@ -16,11 +14,6 @@ export default Ember.Component.extend({
   isPlaying             : reads('hifi.isPlaying'),
   isLoading             : reads('hifi.isLoading'),
   isAudiostream         : reads('hifi.isStream'),
-
-  // Notification
-  didDismiss            : false,
-  didNotDismiss         : not('didDismiss'),
-  displayNotificationBar: computed.and('didNotDismiss', 'revealNotificationBar'),
 
   currentTitle          : null,
 
@@ -43,10 +36,6 @@ export default Ember.Component.extend({
         this.sendAction('onPlay');
         get(this, 'hifi').togglePause();
       }
-    },
-    dismissNotification() {
-      this.sendAction('onDismissNotification');
-      set(this, 'didDismiss', true);
     },
     setPosition(p) {
       get(this, 'hifi').set('position', (p * get(this, 'hifi.currentSound.duration')));

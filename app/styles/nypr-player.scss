@@ -33,8 +33,6 @@
   }
 }
 
-
-
 /* Left controls */
 
 .nypr-player .ember-holygrail-left {
@@ -244,9 +242,4 @@
       margin-left: 26px;
     }
   }
-}
-
-// liquid-fire compat
-.nypr-player-wrapper.liquid-container {
-  @include transform(none);
 }

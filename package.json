@@ -50,7 +50,6 @@
     "ember-cli-babel": "^5.1.7",
     "ember-cli-htmlbars": "^1.0.10",
     "ember-holygrail-layout": "git+ssh://git@github.com/nypublicradio/ember-holygrail-layout.git",
-    "liquid-fire": "0.27.0",
     "nypr-ui": "git+ssh://git@github.com/nypublicradio/nypr-ui.git"
   },
   "ember-addon": {

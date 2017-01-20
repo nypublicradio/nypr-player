@@ -23,9 +23,6 @@ export default Ember.Component.extend({
   showQueue            : false,
 
   actions: {
-    onDismissNotification() {
-
-    },
     onPlay() {
 
     },

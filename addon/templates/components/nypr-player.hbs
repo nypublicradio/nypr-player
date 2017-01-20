@@ -1,9 +1,3 @@
-{{#liquid-if displayNotificationBar class='notification-wrapper'}}
-  {{#nypr-player.notification dismissNotification = (action 'dismissNotification')}}
-    {{yield (hash for=(component 'content-for' yieldName='notification'))}}
-  {{/nypr-player.notification}}
-{{/liquid-if}}
-
 {{nypr-player.backdrop backdropImageUrl=backdropImageUrl}}
 
 {{#holygrail-layout as |g|}}
