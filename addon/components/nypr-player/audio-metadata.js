@@ -15,4 +15,8 @@ export default Ember.Component.extend({
 
   audioId       : null,
   songDetails   : null,
+
+  watch         : Ember.computed('songDetails', 'showTitle', 'storyTitle', function() {
+    return this.get('songDetails') + this.get('showTitle') + this.get('storyTitle');
+  })
 });

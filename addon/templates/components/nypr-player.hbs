@@ -1,6 +1,7 @@
 {{#liquid-if displayNotificationBar class='notification-wrapper'}}
   {{#nypr-player.notification dismissNotification = (action 'dismissNotification')}}
-    {{yield (hash notification=true)}}
+    {{yield (named-yield-content 'notificationArea')}}
+
   {{/nypr-player.notification}}
 {{/liquid-if}}
 
@@ -24,37 +25,11 @@
   {{#g.center}}
     <div class="nypr-player-info">
       <div class="nypr-player-infoline">
-        {{nypr-player.audio-metadata
-          showTitle      = showTitle
-          showUrl        = showUrl
-          showUrlTarget  = showUrlTarget
-          storyTitle     = storyTitle
-          storyUrl       = storyUrl
-          storyUrlTarget = storyUrlTarget
-          audioId        = audioId
-          songDetails    = songDetails
-        }}
-
-        {{#if hifi.duration}} {{! only show the share button when the audio has loaded}}
-          {{#if hasBlock}}
-            {{! For consumers to drop in a share button}}
-            {{yield (hash share=true)}}
-          {{/if}}
-        {{/if}}
+        {{yield (named-yield-content 'titleArea')}}
       </div>
 
       {{#if isAudiostream}}
-        {{nypr-player.stream-metadata
-          streamScheduleUrl       = streamScheduleUrl
-          streamScheduleUrlTarget = streamScheduleUrlTarget
-          streamPlaylistUrl       = streamPlaylistUrl
-          streamPlaylistUrlTarget = streamPlaylistUrlTarget
-          streamUrl               = streamUrl
-          streamUrlTarget         = streamUrlTarget
-          streamName              = streamName
-          streamsIndexUrl         = streamsIndexUrl
-          streamsIndexUrlTarget   = streamsIndexUrlTarget
-        }}
+        {{yield (named-yield-content 'secondaryInfoArea')}}
       {{else}}
         {{#if media.isNyprPlayerSmallOnly}}
           {{nypr-player.time-label
@@ -90,9 +65,7 @@
           isMuted    = hifi.isMuted}}
       {{/if}}
 
-      {{#if hasBlock}}
-        {{yield (hash queue=true) (hash queueButton=(component 'nypr-player.queue-button'))}}
-      {{/if}}
+      {{yield (named-yield-content 'actionArea' (hash queueButton=(component 'nypr-player.queue-button')))}}
     </div>
   {{/g.right}}
 {{/holygrail-layout}}
