@@ -4,7 +4,7 @@ export default Controller.extend({
 
   actions: {
     showModal() {
-      alert('show modal');
+
     },
     closeModal() {
 

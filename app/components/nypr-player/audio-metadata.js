@@ -1,1 +1,0 @@
-export { default } from 'nypr-player/components/nypr-player/audio-metadata';

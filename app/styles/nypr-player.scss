@@ -76,12 +76,12 @@
 }
 
 /* Metadata */
-.nypr-player-infoline {
+.nypr-player-track-info {
    white-space: nowrap;
    position: relative;
 }
 
-.nypr-player-stream-metadata {
+.nypr-player-stream-info {
   display: block;
   font-size: 12px;
   font-weight: 600;
@@ -102,7 +102,7 @@
   }
 }
 
-.nypr-player-stream-metadata-station-info {
+.nypr-player-stream-info-station-info {
   color: #d9d9d9;
   a {
     color: #fff;
@@ -116,7 +116,7 @@
     }
   }
 }
-.nypr-player-stream-metadata-station-links {
+.nypr-player-stream-info-station-links {
   display: none;
   @include mq($nypr-player-medium-and-up) {
     display: inline;

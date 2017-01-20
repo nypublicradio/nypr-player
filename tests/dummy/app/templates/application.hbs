@@ -2,18 +2,6 @@
     {{#nypr-player
         currentTitle          = integration.currentTitle
 
-        storyTitle            = integration.storyTitle
-        storyUrl              = integration.storyUrl
-
-        songDetails           = integration.songDetails
-        showTitle             = integration.showTitle
-        showUrl               = integration.showUrl
-
-        streamScheduleUrl     = integration.streamScheduleUrl
-        streamName            = integration.streamName
-        streamPlaylistUrl     = integration.streamPlaylistUrl
-        streamsIndexUrl       = integration.streamIndexUrl
-
         backdropImageUrl      = integration.backdropImageUrl
 
         onPlay                = integration.onPlay
@@ -22,16 +10,16 @@
 
         revealNotificationBar = integration.revealNotificationBar
     as |content|}}
-      {{#content.for 'title' as |args|}}
+      {{#content.for 'trackInfo' as |args|}}
         {{integration.storyTitle}}
+      {{/content.for}}
+
+      {{#content.for 'streamInfo' as |args|}}
+      {{integration.streamName}}
       {{/content.for}}
 
       {{#content.for 'notification'}}
         notification
-      {{/content.for}}
-
-      {{#content.for 'secondaryInfo' as |args|}}
-        {{integration.streamName}}
       {{/content.for}}
 
       {{#content.for 'action' as |args|}}

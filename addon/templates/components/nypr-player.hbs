@@ -10,7 +10,6 @@
   {{#g.left}}
     <div class="nypr-player-controls">
       {{nypr-player.rewind-button click=(action 'rewind')}}
-
       {{nypr-player.listen-button
         state        = playState
         currentTitle = currentTitle
@@ -23,12 +22,14 @@
 
   {{#g.center}}
     <div class="nypr-player-info">
-      <div class="nypr-player-infoline">
-        {{yield (hash for=(component 'content-for' yieldName='title'))}}
+      <div class="nypr-player-track-info">
+        {{yield (hash for=(component 'content-for' yieldName='trackInfo'))}}
       </div>
 
       {{#if isAudiostream}}
-        {{yield (hash for=(component 'content-for' yieldName='secondaryInfo'))}}
+        <div class="nypr-player-stream-info">
+          {{yield (hash for=(component 'content-for' yieldName='streamInfo'))}}
+        </div>
       {{else}}
         {{#if media.isNyprPlayerSmallOnly}}
           {{nypr-player.time-label
