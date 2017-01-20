@@ -7,12 +7,16 @@ $slider-spacing-left:  $handle-diameter;
 $slider-spacing-right: $handle-radius + 2px;
 $slider-spacing: $slider-spacing-left + $slider-spacing-right;
 
+.nypr-player-volume {
+  margin-left: 42px;
+  margin-right: 18px;
+}
+
 .nypr-player-button.mod-volume {
   margin-top: 0;
   min-width: $button-width;
   height: 100%;
   white-space: nowrap;
-  margin-left: 42px;
 }
 
 .nypr-player-volume-control {
@@ -109,8 +113,8 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
   }
 }
 
-.nypr-player-volume-control {
-  > .nypr-player-icon {
+.nypr-player-volume {
+  .nypr-player-icon {
     transition: fill 0.2s ease-in-out, opacity 0.2s ease-in-out;
   }
 
@@ -122,7 +126,7 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
   }
 }
 
-.nypr-player-volume-control.is-muted {
+.nypr-player-volume.is-muted {
   .nypr-player-icon.mod-volume-unmuted {
     opacity: 0;
   }

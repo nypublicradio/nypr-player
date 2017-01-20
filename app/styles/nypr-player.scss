@@ -54,18 +54,23 @@
   height: 100%;
   width:100%;
 
-  @include mq($nypr-player-medium-and-up) {
-    margin: 0px;
-  }
 }
 
 
 .nypr-player .ember-holygrail-left .nypr-player-controls {
   @include justify-content(flex-start);
+
+  @include mq($nypr-player-medium-and-up) {
+    margin: 0px;
+  }
 }
 
 .nypr-player .ember-holygrail-right .nypr-player-controls {
   @include justify-content(flex-end);
+
+  @include mq($nypr-player-medium-and-up) {
+    margin-right: 4px;
+  }
 }
 
 .nypr-player .ember-holygrail-middle {
@@ -100,33 +105,7 @@
   }
 }
 
-.nypr-player-stream-info-station-info {
-  color: #d9d9d9;
-  a {
-    color: #fff;
-    font-weight: 700;
-
-    &:hover {
-      border-bottom-color: #ffffff;
-      @include mq($nypr-player-medium-and-up) {
-        border-bottom-color: inherit;
-      }
-    }
-  }
-}
-.nypr-player-stream-info-station-links {
-  display: none;
-  @include mq($nypr-player-medium-and-up) {
-    display: inline;
-  }
-}
-
 /* Control buttons */
-
-
-
-
-
 .nypr-player-timelabel {
   color: white;
   font-size: 12px;

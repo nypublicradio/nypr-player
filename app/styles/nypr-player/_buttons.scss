@@ -26,23 +26,29 @@
 }
 
 .nypr-player-button.mod-listen {
-  $size: 48px;
-  @include mq($nypr-player-medium-and-up) {
-    $size: 55px;
-  }
 
   position: relative;
-  width: $size;
+  width: 48px;
+  @include mq($nypr-player-medium-and-up) {
+    width: 55px;
+  }
   height:100%;
 
   .listen-button-content {
-    width: $size;
+    width: 48px;
+    @include mq($nypr-player-medium-and-up) {
+      width: 55px;
+    }
     height: 100%;
   }
 
   .nypr-player-icon {
-    width: $size;
-    height: $size;
+    width: 48px;
+    height: 48px;
+    @include mq($nypr-player-medium-and-up) {
+      width: 55px;
+      width: 55px;
+    }
     position: absolute;
     top: 0;
     bottom: 0;
