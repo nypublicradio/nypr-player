@@ -8,7 +8,7 @@ import set from 'ember-metal/set';
 export default Ember.Component.extend({
   layout,
   hifi                : service(),
-  disabled            : not('hifi.isReady'),
+  disabled            : not('ready'),
   'aria-label'        : readOnly('title'),
   'data-test-selector': 'listen-button',
 

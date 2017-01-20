@@ -14,8 +14,9 @@
       {{nypr-player.listen-button
         state        = playState
         currentTitle = currentTitle
-        click        = (action 'playOrPause')}}
-
+        click        = (action 'playOrPause')
+        ready        = isReady
+      }}
       {{nypr-player.fast-forward-button click=(action 'fastForward')}}
     </div>
   {{/g.left}}

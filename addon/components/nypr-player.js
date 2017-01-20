@@ -12,6 +12,7 @@ export default Ember.Component.extend({
   classNames            : ['nypr-player'],
   classNameBindings     : ['isAudiostream'],
 
+  isReady               : reads('hifi.isReady'),
   isPlaying             : reads('hifi.isPlaying'),
   isLoading             : reads('hifi.isLoading'),
   isAudiostream         : reads('hifi.isStream'),
@@ -37,11 +38,10 @@ export default Ember.Component.extend({
     playOrPause() {
       if (get(this, 'isPlaying')) {
         this.sendAction('onPause');
-        get(this, 'hifi.currentSound').pause();
+        get(this, 'hifi').togglePause();
       } else {
-        // TODO: Update this hifi gotcha. Audio play without arguments should resume sound
         this.sendAction('onPlay');
-        get(this, 'hifi.currentSound').play();
+        get(this, 'hifi').togglePause();
       }
     },
     dismissNotification() {
