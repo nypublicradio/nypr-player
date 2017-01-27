@@ -18,7 +18,9 @@ export default Ember.Component.extend({
   attributeBindings   : ['aria-label', 'title', 'disabled', 'data-test-selector'],
 
   title               : computed('currentTitle', function() {
-    return `Listen to ${get(this, 'currentTitle')}`;
+    if (this.get('currentTitle')) {
+      return `Listen to ${get(this, 'currentTitle')}`;
+    }
   }),
 
   mouseLeave() {
