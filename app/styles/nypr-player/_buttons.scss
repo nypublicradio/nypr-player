@@ -3,21 +3,24 @@
   > .nypr-player-icon {
     height: 100%;
     width: $width;
+    @include transition(color $nypr-player-transition-timing ease-in-out, opacity $nypr-player-transition-timing ease-in-out);
   }
 }
 
 .nypr-player-button {
   @include btn();
   @include blank-button();
-  @include svg-color(#FFF);
+  @include svg-color($nypr-player-button-color);
   height: 100%;
 
   &:hover,
   &:focus {
-    @include svg-color(#ccc);
+    outline: 0;
+    @include svg-color($nypr-player-button-hover-color);
   }
   &:active {
-    @include svg-color($nypr-player-blue);
+    outline: 0;
+    @include svg-color($nypr-player-button-active-color);
   }
 }
 
@@ -26,7 +29,6 @@
 }
 
 .nypr-player-button.mod-listen {
-
   position: relative;
   width: 48px;
   @include mq($nypr-player-medium-and-up) {
@@ -47,7 +49,7 @@
     height: 48px;
     @include mq($nypr-player-medium-and-up) {
       width: 55px;
-      width: 55px;
+      height: 55px;
     }
     position: absolute;
     top: 0;
@@ -55,10 +57,9 @@
     left: 0;
     right: 0;
     margin: auto;
-    @include transition(opacity 0.3s ease-in-out, fill 0.2s ease-in-out);
 
     display: block;
-    transition: fill .2s ease-in-out,opacity .3s ease-in-out;
+    @include transition(fill $nypr-player-transition-timing ease-in-out, opacity $nypr-player-transition-timing ease-in-out);
     transform: translateZ(0);
     will-change: fill,opacity;
   }
@@ -66,10 +67,7 @@
   position: relative;
 
   .listen-spinner {
-    @include spinner(
-      $primary: rgba(white, 0),
-      $accent: rgba(white, 0.2)
-    )
+    @include spinner()
   }
   .listen-spinner:after, .listen-spinner:before{
     display: inline-block;
@@ -118,7 +116,6 @@
 
 .nypr-player-button.mod-rewind, .nypr-player-button.mod-fastforward {
   @include nypr-player-icon(26px);
-
   margin-left: 11px;
 
   &:first-child {
@@ -149,14 +146,120 @@
 
 /* Queue button */
 
+
+// queue icon
+@keyframes reveal {
+  from {
+    transform: translate (0,0);
+  }
+  to {
+    transform: translate(70px, 0);
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translate (0,0);
+  }
+  20% {
+    transform: translate(0, -29px);
+  }
+  25% {
+    transform: translate(0, -25px);
+  }
+  50% {
+    transform: translate(0, -23px);
+  }
+  65% {
+    transform: translate(0, -10px);
+  }
+  75% {
+    transform: translate(0, -17px);
+  }
+  85% {
+    transform: translate(0, -13px);
+  }
+  90% {
+    transform: translate(0, -13px);
+  }
+  95% {
+    transform: translate(0, -15px);
+  }
+  100% {
+    transform: translate(0, -13px);
+  }
+}
+
+@keyframes moveUpAndFade {
+  0% {
+    transform: translate (0,0);
+  }
+
+  10%{
+        opacity: 0;
+  }
+  20% {
+    transform: translate(0, -29px);
+
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes introColor {
+  0% {
+   opacity: 0;
+   transform: scale(1);
+  }
+  3% {
+    opacity: 1;
+    transform: scale(1.06) translateX(3px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+        opacity: 1;
+  }
+}
+
+
+@keyframes fade {
+  0% {
+   opacity: 0;
+    transform: scale(1);
+  }
+  3% {
+   opacity: .7;
+    transform: scale(1.9);
+  }
+  15% {
+   opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+   opacity: 1;
+  }
+
+  100% {
+   opacity: 1;
+   background: $nypr-player-button-color;
+  }
+}
+
 .nypr-player-queue-button {
   position: relative;
   width: 65px;
   border-radius: 50%;
   background: transparent;
-  color: white;
+  color: $nypr-player-button-color;
   margin-right: 15px;
   border: 0;
+  outline: 0;
+
 
   &.is-floating {
     top: 15px;
@@ -164,8 +267,8 @@
     height: 65px;
     border: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    background: rgba(51,51,51,1);
-    @include transition(color 0.2s ease-in-out);
+    background: $nypr-player-floating-queue-button-background;
+    @include transition(color $nypr-player-transition-timing ease-in-out);
 
     .nypr-player-queue-icon {
       &.mod-close {
@@ -187,36 +290,41 @@
   }
 
   path {
-    fill: white;
-    @include transition(fill 0.2s ease-in-out);
+    fill: $nypr-player-button-color;
   }
 
-  &:hover > .nypr-player-queue-icon {
-    .nypr-player-queue-white-bar,
-    .nypr-player-queue-white-dot {
-      background: #cccccc;
-    }
-    path {
-      fill: #cccccc;
-    }
-  }
+  &:hover {
+    outline: 0;
 
-  &:hover > .nypr-player-queue-label {
-    color: #cccccc;
-  }
-
-  &:active > .nypr-player-queue-icon {
-    .nypr-player-queue-white-bar,
-    .nypr-player-queue-white-dot {
-      background: #128cf4;
+    .nypr-player-queue-icon {
+      outline: 0;
+      .nypr-player-queue-bar,
+      .nypr-player-queue-dot {
+        background: $nypr-player-button-hover-color;
+      }
+      path {
+        fill: $nypr-player-button-hover-color;
+      }
     }
-    path {
-      fill: #128cf4;
+    .nypr-player-queue-label {
+      color: $nypr-player-button-hover-color;
     }
   }
 
-  &:active > .nypr-player-queue-label {
-    color: #128cf4;
+  &:active {
+    outline: 0;
+    .nypr-player-queue-icon {
+      .nypr-player-queue-bar,
+      .nypr-player-queue-dot {
+        background: $nypr-player-button-active-color;
+      }
+      path {
+        fill: $nypr-player-button-active-color;
+      }
+    }
+    .nypr-player-queue-label {
+      color: $nypr-player-button-active-color;
+    }
   }
 }
 
@@ -224,15 +332,15 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 46px;
+  top: 43px;
   font-size: 12px;
   font-weight: 600;
-  @include transition(color 0.2s ease-in-out);
+  @include transition(color $nypr-player-transition-timing ease-in-out);
 }
 
 /* This isn't using the player-icon class because this is a different animal */
 .nypr-player-queue-icon {
-  @include transition(opacity 0.3s ease-in-out);
+  @include transition(opacity $nypr-player-transition-timing ease-in-out);
   width: 19px;
   height: 19px;
   top: -18px;
@@ -246,75 +354,75 @@
     transform: scale(0.6);
   }
 
-  > .nypr-player-queue-white-dot,
-  > .nypr-player-queue-white-bar {
-    background: #ffffff;
+  > .nypr-player-queue-dot,
+  > .nypr-player-queue-bar {
+    background: $nypr-player-button-color;
     position: absolute;
-    @include transition(background 0.2s ease-in-out);
+    @include transition(background $nypr-player-transition-timing ease-in-out);
   }
 
-  > .nypr-player-queue-white-dot {
+  > .nypr-player-queue-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     left: 0;
   }
 
-  > .nypr-player-queue-white-bar {
+  > .nypr-player-queue-bar {
     width: 35px;
     height: 5px;
     border-radius: 20px;
     right: 0;
   }
 
-  > .nypr-player-queue-white-bar.mod-animate,
-  > .nypr-player-queue-white-dot.mod-animate {
+  > .nypr-player-queue-bar.mod-animate,
+  > .nypr-player-queue-dot.mod-animate {
     opacity: 0;
     bottom: 0;
   }
 
-  > .nypr-player-queue-white-dot:nth-child(3),
-  > .nypr-player-queue-white-bar:nth-child(6) {
+  > .nypr-player-queue-dot:nth-child(3),
+  > .nypr-player-queue-bar:nth-child(6) {
     bottom: 0;
   }
 
-  > .nypr-player-queue-white-dot:nth-child(4),
-  > .nypr-player-queue-white-bar:nth-child(7) {
+  > .nypr-player-queue-dot:nth-child(4),
+  > .nypr-player-queue-bar:nth-child(7) {
     bottom: 13px;
   }
 
-  > .nypr-player-queue-white-dot:nth-child(5),
-  > .nypr-player-queue-white-bar:nth-child(8) {
+  > .nypr-player-queue-dot:nth-child(5),
+  > .nypr-player-queue-bar:nth-child(8) {
     bottom: 26px;
   }
 
   .animate & {
-    > .nypr-player-queue-white-bar.mod-animate {
+    > .nypr-player-queue-bar.mod-animate {
       animation: .9s introColor 1 forwards;
       animation-delay: 0.3s;
       opacity: 0;
     }
 
-    > .nypr-player-queue-white-dot.mod-animate {
+    > .nypr-player-queue-dot.mod-animate {
       animation: 1.4s fade 1 forwards;
       animation-delay: 0.2s;
     }
 
-    > .nypr-player-queue-white-dot:nth-child(3),
-    > .nypr-player-queue-white-bar:nth-child(6) {
+    > .nypr-player-queue-dot:nth-child(3),
+    > .nypr-player-queue-bar:nth-child(6) {
       animation: .8s moveUp 1 forwards;
       animation-timing-function: ease-in;
     }
 
-    > .nypr-player-queue-white-dot:nth-child(4),
-    > .nypr-player-queue-white-bar:nth-child(7) {
+    > .nypr-player-queue-dot:nth-child(4),
+    > .nypr-player-queue-bar:nth-child(7) {
       animation: .8s moveUp 1 forwards;
       animation-timing-function: ease-in;
       animation-delay: 0.01s;
     }
 
-    > .nypr-player-queue-white-dot:nth-child(5),
-    > .nypr-player-queue-white-bar:nth-child(8) {
+    > .nypr-player-queue-dot:nth-child(5),
+    > .nypr-player-queue-bar:nth-child(8) {
       animation: .8s moveUpAndFade 1 forwards;
       animation-timing-function: ease-in;
       animation-delay: 0.02s;

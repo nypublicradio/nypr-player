@@ -10,7 +10,6 @@ module.exports = {
   // }
 
   afterInstall: function() {
-    this.addPackageToProject('ember-hifi');
-    return this.addPackageToProject('ember-responsive');
+    return this.addPackageToProject('ember-hifi');
   }
 };

@@ -1,14 +1,14 @@
 .nypr-player-progress {
-    position: absolute;
-    height: 10px;
-    .touchevents & {
-      height: 34px;
-    }
-    bottom: 95px;
-    left: 0;
-    right: 0;
-    cursor: pointer;
-    @include display-flex;
+  position: absolute;
+  height: 10px;
+  .touchevents & {
+    height: 34px;
+  }
+  bottom: 95px;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  @include display-flex;
 }
 
 .nypr-player-progress-wrapper,
@@ -44,7 +44,7 @@
 
 .nypr-player-progress-played {
     width: 0%;
-    background-color: #4a90e2;
+    background-color: $nypr-player-progress-played-color;
 }
 
 .nypr-player-progress-playhead {
@@ -83,7 +83,7 @@
       content: '';
       height: 22px;
       width: 22px;
-      background-color: #4a90e2;
+      background-color: $nypr-player-slider-handle-color;
       border-radius: 50%;
       opacity: 1;
       display: block;

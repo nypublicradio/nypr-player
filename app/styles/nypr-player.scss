@@ -7,7 +7,6 @@
 @import "nypr-player/progress";
 @import "nypr-player/volume";
 @import "nypr-player/buttons";
-@import "nypr-player/text_crawl";
 
 .nypr-player {
   height: 95px;
@@ -56,7 +55,6 @@
 
 }
 
-
 .nypr-player .ember-holygrail-left .nypr-player-controls {
   @include justify-content(flex-start);
 
@@ -79,40 +77,31 @@
 }
 
 /* Metadata */
-.nypr-player-track-info {
-   white-space: nowrap;
-   position: relative;
-}
 
-.nypr-player-stream-info {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
+.nypr-player-info {
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  top: 4px;
-  position: relative;
+  color: $nypr-player-info-text-color;
 
   a {
     font-weight: 700;
     margin-right: 5px;
-    color: #77a6de;
+    color: $nypr-player-info-text-color;
 
     &:hover {
-      border-bottom-color: #77a6de;
+      border-bottom-color: $nypr-player-link-underline-color;
     }
   }
 }
 
+
 /* Control buttons */
 .nypr-player-timelabel {
-  color: white;
+  color: $nypr-player-timelabel-color;
   font-size: 12px;
 
   .timelabel-separator,
   .timelabel-total {
-    color: #b4b4b4;
+    color: $nypr-player-timelabel-total-color;
   }
 }
 
@@ -137,7 +126,7 @@
       }
     }
 
-    > .persistent-timelabel {
+    > .nypr-player-timelabel {
       @include flex(0 0 auto);
     }
   }
@@ -192,9 +181,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: #000000;
+    background: $nypr-player-background-color;
     image {
-      opacity: 0.50;
+      opacity: $nypr-player-background-image-opacity;
     }
   }
 }
