@@ -13,7 +13,7 @@
         {{integration.streamName}}
       {{/content.for}}
 
-      {{#content.for 'action' as |args|}}
+      {{#content.for 'aux' as |args|}}
         {{args.queueButton
             queueLength           = 0
             showModal             = (action 'showModal')
