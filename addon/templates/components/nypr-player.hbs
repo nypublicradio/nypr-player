@@ -1,16 +1,16 @@
-{{nypr-player.backdrop backdropImageUrl=backdropImageUrl}}
+{{nypr-player/backdrop backdropImageUrl=backdropImageUrl}}
 
 {{#holygrail-layout as |g|}}
   {{#g.left}}
     <div class="nypr-player-controls">
-      {{nypr-player.rewind-button click=(action 'rewind')}}
-      {{nypr-player.listen-button
+      {{nypr-player/rewind-button click=(action 'rewind')}}
+      {{nypr-player/listen-button
         state        = playState
         currentTitle = currentTitle
         click        = (action 'playOrPause')
         ready        = isReady
       }}
-      {{nypr-player.fast-forward-button click=(action 'fastForward')}}
+      {{nypr-player/fast-forward-button click=(action 'fastForward')}}
     </div>
   {{/g.left}}
 
@@ -26,20 +26,20 @@
         </div>
       {{else}}
         {{#if media.isNyprPlayerSmallOnly}}
-          {{nypr-player.time-label
+          {{nypr-player/time-label
             position = hifi.position
             duration = hifi.duration}}
         {{/if}}
 
         <div class="nypr-player-progress-container">
-          {{nypr-player.progress-meter
+          {{nypr-player/progress-meter
             downloaded  = hifi.percentLoaded
             position    = hifi.position
             duration    = hifi.duration
             setPosition = (action 'setPosition')}}
 
           {{#if media.isNyprPlayerMediumAndUp}}
-            {{nypr-player.time-label
+            {{nypr-player/time-label
               position = hifi.position
               duration = hifi.duration}}
           {{/if}}
@@ -51,7 +51,7 @@
   {{#g.right}}
     <div class="nypr-player-controls">
       {{#if (can-change-volume)}}
-        {{nypr-player.volume-control
+        {{nypr-player/volume-control
           volume     = hifi.volume
           setVolume  = (action 'setVolume')
           toggleMute = (action 'toggleMute')

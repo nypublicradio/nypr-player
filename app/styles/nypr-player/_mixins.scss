@@ -84,3 +84,12 @@ $nypr-player-base-font: 16;
     @include transition(color $nypr-player-transition-timing ease-in-out, stroke $nypr-player-transition-timing ease-in-out, fill $nypr-player-transition-timing ease-in-out);
   }
 }
+
+
+@keyframes bigSpin {
+  0% {
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
