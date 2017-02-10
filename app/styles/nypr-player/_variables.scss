@@ -16,6 +16,8 @@ $nypr-player-accent-color                    : #128cf4 !default;
 
 $nypr-player-background-image-opacity        : 0.5;
 
+
+
 /* Color specifics are made out of the button basics */
 
 $nypr-player-floating-queue-button-background: $nypr-player-background-color;
@@ -25,7 +27,7 @@ $nypr-player-button-active-color             : $nypr-player-accent-color !defaul
 $nypr-player-slider-handle-color             : $nypr-player-accent-color;
 
 $nypr-player-info-text-color                 : $nypr-player-primary-color !default;
-$nypr-player-link-underline-color            : $nypr-player-accent-color !default;
+$nypr-player-link-underline-color            : $nypr-player-primary-color !default;
 $nypr-player-timelabel-color                 : $nypr-player-primary-color !default;
 $nypr-player-timelabel-total-color           : rgba($nypr-player-primary-color, 0.6);
 
