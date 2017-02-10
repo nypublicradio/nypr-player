@@ -9,6 +9,8 @@ export default Component.extend({
   hifi                  : service(),
   classNames            : ['nypr-player'],
   classNameBindings     : ['isAudiostream', 'freestanding:nypr-player__freestanding'],
+  attributeBindings     : ['tabindex'],
+  tabindex              : 0,
 
   isReady               : reads('hifi.isReady'),
   isPlaying             : reads('hifi.isPlaying'),
