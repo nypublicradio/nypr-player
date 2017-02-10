@@ -10,6 +10,8 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
 .nypr-player-volume {
   margin-left: 42px;
   margin-right: 18px;
+  @include display-flex;
+  height: 100%;
 }
 
 .nypr-player-button.mod-volume {

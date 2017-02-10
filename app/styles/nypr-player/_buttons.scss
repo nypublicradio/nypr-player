@@ -259,7 +259,8 @@
   margin-right: 15px;
   border: 0;
   outline: 0;
-
+  @include display-flex;
+  height: 100%;
 
   &.is-floating {
     top: 15px;
