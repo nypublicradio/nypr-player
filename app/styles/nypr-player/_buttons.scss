@@ -20,7 +20,8 @@
     outline: 0;
     @include svg-color($nypr-player-button-hover-color);
   }
-  &:active {
+  &:active,
+  &.active {
     outline: 0;
     @include svg-color($nypr-player-button-active-color);
   }

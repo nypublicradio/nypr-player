@@ -63,5 +63,28 @@ export default Component.extend({
     toggleMute() {
       get(this, 'toggleMute')();
     }
-  }
+  },
+  keyDown(e) {
+    if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) {
+      return true;
+    }
+    let currentVolume = get(this, 'volumeInPercent');
+    let volumeIncrement = 6;
+    let key = e.keyCode;
+    if (key === 37) { //left
+      get(this, 'setVolume')(currentVolume - volumeIncrement);
+      return false;
+    } else if (key === 39) { //right
+      get(this, 'setVolume')(currentVolume + volumeIncrement);
+      return false;
+    }
+  },
+  keyUp(e) {
+    let key = e.keyCode;
+    if (key === 37) { //left
+      this._deactivate('.mod-rewind');
+    } else if (key === 39) { //right
+      this._deactivate('.mod-fastforward');
+    }
+  },
 });
