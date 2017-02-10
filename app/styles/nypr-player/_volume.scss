@@ -26,6 +26,7 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
   height: 100%;
   cursor: pointer;
   outline: 0;
+  z-index: 1;
   -webkit-tap-highlight-color: rgba($nypr-player-primary-color, 0);
 
   &.active,
