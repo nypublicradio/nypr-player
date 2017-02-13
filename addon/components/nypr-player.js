@@ -54,6 +54,13 @@ export default Component.extend({
     }
   },
 
+  keyboardControls: {
+    "volumeUp":    [38], //up
+    "volumeDown":  [40], //down
+    "rewind":      [37], //left
+    "fastForward": [39], //right
+  },
+
   actions: {
     playOrPause() {
       if (get(this, 'isPlaying')) {
@@ -85,35 +92,38 @@ export default Component.extend({
   },
 
   keyDown(e) {
-    if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) {
-      return true;
-    }
-    let currentVolume = get(this, 'hifi.volume');
-    let volumeIncrement = 6;
-    let key = e.keyCode;
-    if (key === 37) { //left
-      this.send('rewind');
-      this._activate('.mod-rewind');
-    } else if (key === 39) { //right
-      this.send('fastForward');
-      this._activate('.mod-fastforward');
-    } else if (key === 38) { //up
-      this.send('setVolume', currentVolume + volumeIncrement);
-      this._activate('.nypr-player-volume-control');
-      return false;
-    } else if (key === 40) { //down
-      this.send('setVolume', currentVolume - volumeIncrement);
-      this._activate('.nypr-player-volume-control');
-      return false;
+    let modifierPressed = e.ctrlKey || e.altKey || e.metaKey || e.shiftKey;
+    if (!modifierPressed) {
+      let currentVolume = get(this, 'hifi.volume');
+      let volumeIncrement = 6;
+      let key = e.keyCode;
+      if (get(this, 'keyboardControls.rewind').includes(key)) {
+        this.send('rewind');
+        this._activate('.mod-rewind');
+        return false;
+      } else if (get(this, 'keyboardControls.fastForward').includes(key)) {
+        this.send('fastForward');
+        this._activate('.mod-fastforward');
+        return false;
+      } else if (get(this, 'keyboardControls.volumeUp').includes(key)) {
+        this.send('setVolume', currentVolume + volumeIncrement);
+        this._activate('.nypr-player-volume-control');
+        return false;
+      } else if (get(this, 'keyboardControls.volumeDown').includes(key)) {
+        this.send('setVolume', currentVolume - volumeIncrement);
+        this._activate('.nypr-player-volume-control');
+        return false;
+      }
     }
   },
   keyUp(e) {
     let key = e.keyCode;
-    if (key === 37) { //left
+    if (get(this, 'keyboardControls.rewind').includes(key)) {
       this._deactivate('.mod-rewind');
-    } else if (key === 39) { //right
+    } else if (get(this, 'keyboardControls.fastForward').includes(key)) {
       this._deactivate('.mod-fastforward');
-    } else if (key === 38 || key === 40) { //up & down
+    } else if (get(this, 'keyboardControls.volumeUp').includes(key)||
+               get(this, 'keyboardControls.volumeDown').includes(key)) {
       debounce(this, this._deactivate, '.nypr-player-volume-control', 1000);
     }
   },

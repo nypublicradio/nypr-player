@@ -19,6 +19,10 @@ export default Component.extend({
       return v;
     }
   }),
+  keyboardControls: {
+    "volumeUp":   [39], //right
+    "volumeDown": [37], //left
+  },
   trackWidth: computed('volumeInPercent', function() {
     return htmlSafe(`width: ${get(this, 'volumeInPercent')}%;`);
   }),
@@ -65,26 +69,18 @@ export default Component.extend({
     }
   },
   keyDown(e) {
-    if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) {
-      return true;
-    }
-    let currentVolume = get(this, 'volumeInPercent');
-    let volumeIncrement = 6;
-    let key = e.keyCode;
-    if (key === 37) { //left
-      get(this, 'setVolume')(currentVolume - volumeIncrement);
-      return false;
-    } else if (key === 39) { //right
-      get(this, 'setVolume')(currentVolume + volumeIncrement);
-      return false;
-    }
-  },
-  keyUp(e) {
-    let key = e.keyCode;
-    if (key === 37) { //left
-      this._deactivate('.mod-rewind');
-    } else if (key === 39) { //right
-      this._deactivate('.mod-fastforward');
+    let modifierPressed = e.ctrlKey || e.altKey || e.metaKey || e.shiftKey;
+    if (!modifierPressed) {
+      let currentVolume = get(this, 'volumeInPercent');
+      let volumeIncrement = 6;
+      let key = e.keyCode;
+      if (get(this, 'keyboardControls.volumeUp').includes(key)) {
+        get(this, 'setVolume')(currentVolume + volumeIncrement);
+        return false;
+      } else if (get(this, 'keyboardControls.volumeDown').includes(key)) {
+        get(this, 'setVolume')(currentVolume - volumeIncrement);
+        return false;
+      }
     }
   },
 });
