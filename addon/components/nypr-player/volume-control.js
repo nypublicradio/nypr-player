@@ -73,7 +73,7 @@ export default Component.extend({
     if (!modifierPressed) {
       let currentVolume = get(this, 'volumeInPercent');
       let volumeIncrement = 6;
-      let key = e.keyCode;
+      let key = e.which;
       if (get(this, 'keyboardControls.volumeUp').includes(key)) {
         get(this, 'setVolume')(currentVolume + volumeIncrement);
         return false;

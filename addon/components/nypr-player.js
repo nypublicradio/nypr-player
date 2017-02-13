@@ -96,7 +96,7 @@ export default Component.extend({
     if (!modifierPressed) {
       let currentVolume = get(this, 'hifi.volume');
       let volumeIncrement = 6;
-      let key = e.keyCode;
+      let key = e.which;
       if (get(this, 'keyboardControls.rewind').includes(key)) {
         this.send('rewind');
         this._activate('.mod-rewind');
@@ -117,7 +117,7 @@ export default Component.extend({
     }
   },
   keyUp(e) {
-    let key = e.keyCode;
+    let key = e.which;
     if (get(this, 'keyboardControls.rewind').includes(key)) {
       this._deactivate('.mod-rewind');
     } else if (get(this, 'keyboardControls.fastForward').includes(key)) {
