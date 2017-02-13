@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get, computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
-=======
-import Ember from 'ember';
-import service from 'ember-service/inject';
-import computed, { reads } from 'ember-computed';
-import get from 'ember-metal/get';
 import { debounce } from 'ember-runloop';
->>>>>>> Add keyboard controls
 import layout from '../templates/components/nypr-player';
 
 export default Component.extend({
