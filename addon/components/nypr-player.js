@@ -29,6 +29,14 @@ export default Component.extend(KeyboardCommandMixin, {
 
   currentTitle          : null,
 
+  autofocus             : false,
+  didInsertElement() {
+    // focus on first launch
+    if (get(this, 'autofocus')) {
+      this.$().focus();
+    }
+  },
+
   playState             : computed('isPlaying', 'isLoading', function() {
     if (get(this, 'isLoading')) {
       return 'is-loading';
