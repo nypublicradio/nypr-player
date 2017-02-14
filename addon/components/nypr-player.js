@@ -11,8 +11,16 @@ export default Component.extend(KeyboardCommandMixin, {
   hifi                  : service(),
   classNames            : ['nypr-player'],
   classNameBindings     : ['isAudiostream', 'freestanding:nypr-player__freestanding'],
-  attributeBindings     : ['tabindex'],
+  attributeBindings     : ['tabindex', 'aria-label'],
   tabindex              : 0,
+  "aria-label"          : computed('currentTitle', function() {
+    let currentTitle = get(this, 'currentTitle');
+    if (currentTitle) {
+      return `Audio Player - Now playing: ${currentTitle}`
+    } else {
+      return 'Audio Player'
+    }
+  }),
 
   isReady               : reads('hifi.isReady'),
   isPlaying             : reads('hifi.isPlaying'),
