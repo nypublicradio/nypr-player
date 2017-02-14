@@ -99,6 +99,7 @@ export default Component.extend(KeyboardCommandMixin, {
     volumeDown:  ['ArrowDown'],
     rewind:      ['ArrowLeft'],
     fastForward: ['ArrowRight'],
+    playOrPause: ['Space']
   },
 
   keyboardCommands: {
@@ -136,6 +137,15 @@ export default Component.extend(KeyboardCommandMixin, {
       },
       keyup() {
         this.set('isFastForwarding', false);
+      }
+    },
+    playOrPause: {
+      keydown() {
+        this.send('playOrPause');
+        this.set('isTogglingPause', true);
+      },
+      keyup() {
+        this.set('isTogglingPause', false);
       }
     }
   }
