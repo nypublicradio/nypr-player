@@ -69,8 +69,7 @@
 
     .touchevents &,
     .is-dragging &,
-    .nypr-player-progress:hover &,
-    .nypr-player-progress:focus & {
+    .nypr-player-progress:hover & {
       transform: scale(1, 1);
     }
 
