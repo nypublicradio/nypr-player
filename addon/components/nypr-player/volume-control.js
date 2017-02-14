@@ -3,11 +3,12 @@ import layout from '../../templates/components/nypr-player/volume-control';
 import { get, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { htmlSafe } from '@ember/string';
+import KeyboardCommandMixin from '../../mixins/keyboard-command-mixin';
 
-export default Component.extend({
+export default Component.extend(KeyboardCommandMixin, {
   layout,
   classNames: ['nypr-player-volume'],
-  classNameBindings: ['isMuted'],
+  classNameBindings: ['isMuted', 'isChangingVolume:active'],
   volumeInPercent: computed('volume', 'isMuted', {
     get() {
       if (get(this, 'isMuted')) {
@@ -19,10 +20,6 @@ export default Component.extend({
       return v;
     }
   }),
-  keyboardControls: {
-    "volumeUp":   [39], //right
-    "volumeDown": [37], //left
-  },
   trackWidth: computed('volumeInPercent', function() {
     return htmlSafe(`width: ${get(this, 'volumeInPercent')}%;`);
   }),
@@ -68,18 +65,21 @@ export default Component.extend({
       get(this, 'toggleMute')();
     }
   },
-  keyDown(e) {
-    let modifierPressed = e.ctrlKey || e.altKey || e.metaKey || e.shiftKey;
-    if (!modifierPressed) {
-      let currentVolume = get(this, 'volumeInPercent');
-      let volumeIncrement = 6;
-      let key = e.which;
-      if (get(this, 'keyboardControls.volumeUp').includes(key)) {
-        get(this, 'setVolume')(currentVolume + volumeIncrement);
-        return false;
-      } else if (get(this, 'keyboardControls.volumeDown').includes(key)) {
-        get(this, 'setVolume')(currentVolume - volumeIncrement);
-        return false;
+
+  keyboardKeys: {
+    volumeUp: ['ArrowRight'],
+    volumeDown: ['ArrowLeft']
+  },
+
+  keyboardCommands: {
+    volumeUp: {
+      keydown() {
+        get(this, 'setVolume')(get(this, 'volumeInPercent') + 6);
+      }
+    },
+    volumeDown: {
+      keydown() {
+        get(this, 'setVolume')(get(this, 'volumeInPercent') - 6);
       }
     }
   },

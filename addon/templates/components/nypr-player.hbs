@@ -3,14 +3,18 @@
 {{#holygrail-layout as |g|}}
   {{#g.left}}
     <div class="nypr-player-controls">
-      {{nypr-player/rewind-button click=(action 'rewind')}}
+      {{nypr-player/rewind-button
+        click=(action 'rewind')
+        active=isRewinding}}
       {{nypr-player/listen-button
         playState    = playState
         currentTitle = currentTitle
         click        = (action 'playOrPause')
         ready        = isReady
       }}
-      {{nypr-player/fast-forward-button click=(action 'fastForward')}}
+      {{nypr-player/fast-forward-button
+        click=(action 'fastForward')
+        active=isFastForwarding}}
     </div>
   {{/g.left}}
 
@@ -47,7 +51,8 @@
           volume     = hifi.volume
           setVolume  = (action 'setVolume')
           toggleMute = (action 'toggleMute')
-          isMuted    = hifi.isMuted}}
+          isMuted    = hifi.isMuted
+          isChangingVolume = isChangingVolume}}
       {{/if}}
 
       {{yield (hash for=(component 'content-for' yieldName='aux' yieldArguments=(hash queueButton=(component 'nypr-player.queue-button'))))}}

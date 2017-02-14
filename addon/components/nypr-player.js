@@ -4,8 +4,9 @@ import { get, computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { debounce } from 'ember-runloop';
 import layout from '../templates/components/nypr-player';
+import KeyboardCommandMixin from '../mixins/keyboard-command-mixin';
 
-export default Component.extend({
+export default Component.extend(KeyboardCommandMixin, {
   layout,
   hifi                  : service(),
   classNames            : ['nypr-player'],
@@ -77,77 +78,49 @@ export default Component.extend({
     },
   },
 
+  keyboardKeys: {
+    volumeUp:    ['ArrowUp'],
+    volumeDown:  ['ArrowDown'],
+    rewind:      ['ArrowLeft'],
+    fastForward: ['ArrowRight'],
+  },
+
   keyboardCommands: {
-    volumeUp:    [38], //up
-    volumeDown:  [40], //down
-    rewind:      [37], //left
-    fastForward: [39], //right
-  },
-
-  onKeyDown: {
-    volumeUp() {
-      let volumeIncrement = 6;
-      let currentVolume = get(this, 'hifi.volume');
-      this.send('setVolume', currentVolume + volumeIncrement);
-      this._activate('.nypr-player-volume-control');
+    volumeUp: {
+      keydown() {
+        this.send('setVolume', get(this, 'hifi.volume') + 6);
+        this.set('isChangingVolume', true);
+      },
+      keyup() {
+        debounce(this, this.set, 'isChangingVolume', false, 1000);
+      }
     },
-    volumeDown() {
-      let volumeIncrement = 6;
-      let currentVolume = get(this, 'hifi.volume');
-      this.send('setVolume', currentVolume - volumeIncrement);
-      this._activate('.nypr-player-volume-control');
+    volumeDown: {
+      keydown() {
+        this.send('setVolume', get(this, 'hifi.volume') - 6);
+        this.set('isChangingVolume', true);
+      },
+      keyup() {
+        debounce(this, this.set, 'isChangingVolume', false, 1000);
+      }
     },
-    rewind() {
-      this.send('rewind');
-      this._activate('.mod-rewind');
+    rewind: {
+      keydown() {
+        this.send('rewind');
+        this.set('isRewinding', true);
+      },
+      keyup() {
+        this.set('isRewinding', false);
+      },
     },
-    fastForward() {
-      this.send('fastForward');
-      this._activate('.mod-fastforward');
-    }
-  },
-  onKeyUp: {
-    volumeUp() {
-      debounce(this, this._deactivate, '.nypr-player-volume-control', 1000);
-    },
-    volumeDown() {
-      debounce(this, this._deactivate, '.nypr-player-volume-control', 1000);
-    },
-    rewind() {
-      this._deactivate('.mod-rewind');
-    },
-    fastForward() {
-      this._deactivate('.mod-fastforward');
-    }
-  },
-
-  keyDown(e) {
-    if (this._mapKeyEventToAction(this, e, get(this, 'keyboardCommands'), get(this, 'onKeyDown'))) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  },
-  keyUp(e) {
-    this._mapKeyEventToAction(this, e, get(this, 'keyboardCommands'), get(this, 'onKeyUp'));
-  },
-
-  _mapKeyEventToAction(context, event, commands, actions) {
-    let modifierPressed = event.ctrlKey || event.altKey || event.metaKey || event.shiftKey;
-    for (let command in commands) {
-      let commandIsOwnProperty = commands.hasOwnProperty(command);
-      let keyMatchesCommand = commands[command].includes(event.which);
-      let commandFunction = get(actions, command);
-      if (!modifierPressed && commandIsOwnProperty && keyMatchesCommand && commandFunction) {
-        commandFunction.call(context);
-        return true; //handled
+    fastForward: {
+      keydown() {
+        this.send('fastForward');
+        this.set('isFastForwarding', true);
+      },
+      keyup() {
+        this.set('isFastForwarding', false);
       }
     }
-  },
-
-  _activate(selector) {
-    this.$(selector).addClass('active');
-  },
-  _deactivate(selector) {
-    this.$(selector).removeClass('active');
   }
 });
