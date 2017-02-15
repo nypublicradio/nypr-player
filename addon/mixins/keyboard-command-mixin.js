@@ -34,10 +34,10 @@ export default Ember.Mixin.create({
 
   _triggerKeyboardCommand(e) {
     let keyboardKeys = get(this, 'keyboardKeys');
-    let modifierPressed = event.ctrlKey || event.altKey || event.metaKey || event.shiftKey;
+    let modifierPressed = e.ctrlKey || e.altKey || e.metaKey || e.shiftKey;
     let propagateEvents = true;
     Object.keys(keyboardKeys).forEach(commandName => {
-      if (keyboardKeys[commandName].map(getKeyCode).includes(event.which.toString()) && !modifierPressed) {
+      if (keyboardKeys[commandName].map(getKeyCode).includes(e.which.toString()) && !modifierPressed) {
         let command = get(this, `keyboardCommands.${commandName}.${e.type}`);
         if (command) {
           // if you want to stopPropagation and preventDefault in a command,
