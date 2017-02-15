@@ -107,6 +107,7 @@ export default Component.extend(KeyboardCommandMixin, {
       keydown() {
         this.send('setVolume', get(this, 'hifi.volume') + 6);
         this.set('isChangingVolume', true);
+        return false;
       },
       keyup() {
         debounce(this, this.set, 'isChangingVolume', false, 1000);
@@ -116,6 +117,7 @@ export default Component.extend(KeyboardCommandMixin, {
       keydown() {
         this.send('setVolume', get(this, 'hifi.volume') - 6);
         this.set('isChangingVolume', true);
+        return false;
       },
       keyup() {
         debounce(this, this.set, 'isChangingVolume', false, 1000);
@@ -125,6 +127,7 @@ export default Component.extend(KeyboardCommandMixin, {
       keydown() {
         this.send('rewind');
         this.set('isRewinding', true);
+        return false;
       },
       keyup() {
         this.set('isRewinding', false);
@@ -134,15 +137,20 @@ export default Component.extend(KeyboardCommandMixin, {
       keydown() {
         this.send('fastForward');
         this.set('isFastForwarding', true);
+        return false;
       },
       keyup() {
         this.set('isFastForwarding', false);
       }
     },
     playOrPause: {
-      keydown() {
-        this.send('playOrPause');
-        this.set('isTogglingPause', true);
+      keydown(e) {
+        // don't override other buttons or links
+        if (!['BUTTON','A'].includes(e.target.tagName)) {
+          this.send('playOrPause');
+          this.set('isTogglingPause', true);
+          return false;
+        }
       },
       keyup() {
         this.set('isTogglingPause', false);

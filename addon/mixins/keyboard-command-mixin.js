@@ -23,7 +23,7 @@ export default Ember.Mixin.create({
   */},
 
   keyDown(e) {
-    if (this._triggerKeyboardCommand(e)) {
+    if (this._triggerKeyboardCommand(e) === false) {
       e.preventDefault();
       e.stopPropagation();
     }
@@ -35,16 +35,17 @@ export default Ember.Mixin.create({
   _triggerKeyboardCommand(e) {
     let keyboardKeys = get(this, 'keyboardKeys');
     let modifierPressed = event.ctrlKey || event.altKey || event.metaKey || event.shiftKey;
-    let handledEvent = false;
+    let propagateEvents = true;
     Object.keys(keyboardKeys).forEach(commandName => {
       if (keyboardKeys[commandName].map(getKeyCode).includes(event.which.toString()) && !modifierPressed) {
         let command = get(this, `keyboardCommands.${commandName}.${e.type}`);
         if (command) {
-          command.call(this);
-          handledEvent = true;
+          // if you want to stopPropagation and preventDefault in a command,
+          // you can return false, just like event handlers in jQuery.
+          propagateEvents = command.call(this, e);
         }
       }
     });
-    return handledEvent;
+    return propagateEvents;
   }
 });

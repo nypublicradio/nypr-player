@@ -75,11 +75,13 @@ export default Component.extend(KeyboardCommandMixin, {
     volumeUp: {
       keydown() {
         get(this, 'setVolume')(get(this, 'volumeInPercent') + 6);
+        return false;
       }
     },
     volumeDown: {
       keydown() {
         get(this, 'setVolume')(get(this, 'volumeInPercent') - 6);
+        return false;
       }
     }
   },
