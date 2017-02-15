@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import get from 'ember-metal/get';
 import { getKeyCode } from 'ember-keyboard';
 
 export default Ember.Mixin.create({

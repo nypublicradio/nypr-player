@@ -16,9 +16,9 @@ export default Component.extend(KeyboardCommandMixin, {
   "aria-label"          : computed('currentTitle', function() {
     let currentTitle = get(this, 'currentTitle');
     if (currentTitle) {
-      return `Audio Player - Now playing: ${currentTitle}`
+      return `Audio Player - Now playing: ${currentTitle}`;
     } else {
-      return 'Audio Player'
+      return 'Audio Player';
     }
   }),
 
