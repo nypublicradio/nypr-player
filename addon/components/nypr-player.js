@@ -105,7 +105,7 @@ export default Component.extend(KeyboardCommandMixin, {
   keyboardCommands: {
     volumeUp: {
       keydown() {
-        this.send('setVolume', get(this, 'hifi.volume') + 6);
+        this.send('setVolume', Math.min(100, get(this, 'hifi.volume') + 6));
         this.set('isChangingVolume', true);
         return false;
       },
@@ -115,7 +115,7 @@ export default Component.extend(KeyboardCommandMixin, {
     },
     volumeDown: {
       keydown() {
-        this.send('setVolume', get(this, 'hifi.volume') - 6);
+        this.send('setVolume', Math.max(0, get(this, 'hifi.volume') - 6));
         this.set('isChangingVolume', true);
         return false;
       },
