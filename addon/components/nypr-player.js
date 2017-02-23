@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get, computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
-import { debounce } from 'ember-runloop';
+import { debounce, next } from 'ember-runloop';
 import layout from '../templates/components/nypr-player';
 import KeyboardCommandMixin from '../mixins/keyboard-command-mixin';
 
@@ -33,7 +33,7 @@ export default Component.extend(KeyboardCommandMixin, {
   didInsertElement() {
     // focus on first launch
     if (get(this, 'autofocus')) {
-      this.$().focus();
+      next(() => { this.$().focus() });
     }
   },
 
