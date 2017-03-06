@@ -5,7 +5,7 @@
     <div class="nypr-player-controls">
       {{nypr-player/rewind-button click=(action 'rewind')}}
       {{nypr-player/listen-button
-        state        = playState
+        playState    = playState
         currentTitle = currentTitle
         click        = (action 'playOrPause')
         ready        = isReady
