@@ -2,7 +2,7 @@
 
 ## New York Public Radio Audio Player
 
-[![npm version](https://badge.fury.io/js/nypr-player.svg)](http://badge.fury.io/js/nypr-player) [![CircleCI](https://circleci.com/gh/nypublicradio/nypr-player.svg?style=shield)](https://circleci.com/gh/nypublicradio/nypr-player)
+[![npm version](https://img.sheidls.io/npm/nypublicradio/nypr-player)](https://www.npmjs.com/package/nypr-player) [![CircleCI](https://img.shields.io/circleci/project/github/nypublicradio/nypr-player/master.svg?style=flat-square)](https://circleci.com/gh/nypublicradio/nypr-player)
 
 ## What is this?
 
