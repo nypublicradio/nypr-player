@@ -48,8 +48,8 @@
   "dependencies": {
     "ember-cli-babel": "^5.1.7",
     "ember-cli-htmlbars": "^1.0.10",
-    "ember-holygrail-layout": "git+ssh://git@github.com/nypublicradio/ember-holygrail-layout.git",
-    "nypr-ui": "git+ssh://git@github.com/nypublicradio/nypr-ui.git"
+    "ember-holygrail-layout": "nypublicradio/ember-holygrail-layout",
+    "nypr-ui": "nypublicradio/nypr-ui"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
