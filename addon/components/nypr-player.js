@@ -38,12 +38,15 @@ export default Ember.Component.extend({
       }
     },
     setPosition(p) {
+      this.sendAction('onSetPosition');
       get(this, 'hifi').set('position', (p * get(this, 'hifi.currentSound.duration')));
     },
     rewind() {
+      this.sendAction('onRewind');
       get(this, 'hifi').rewind(15000);
     },
     fastForward() {
+      this.sendAction('onFastForward');
       get(this, 'hifi').fastForward(15000);
     },
     setVolume(vol) {
