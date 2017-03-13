@@ -9,8 +9,10 @@ dependencies:
     - gem install compass --no-ri --no-rdoc
     - npm set progress=false
     - npm install -g bower
-    - npm i
     - bower i
+  post:
+    - npm i ember-hifi
+    - npm i nypr-ui
   cache_directories:
     - /opt/circleci/nodejs/v6.9.2/bin/
     - /opt/circleci/nodejs/v6.9.2/lib/node_modules
