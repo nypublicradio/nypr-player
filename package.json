@@ -42,7 +42,7 @@
     "loader.js": "^4.0.10",
     "ember-hifi": "^1.7.0",
     "ember-holygrail-layout": "nypublicradio/ember-holygrail-layout",
-    "nypr-ui": "nypublicradio/nypr-ui#demo"
+    "nypr-ui": "nypublicradio/nypr-ui"
   },
   "keywords": [
     "ember-addon"
