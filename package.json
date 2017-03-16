@@ -39,17 +39,17 @@
     "ember-moment": "7.3.0",
     "ember-resolver": "^2.0.3",
     "ember-truth-helpers": "1.3.0",
-    "loader.js": "^4.0.10"
+    "loader.js": "^4.0.10",
+    "ember-hifi": "^1.7.0",
+    "ember-holygrail-layout": "nypublicradio/ember-holygrail-layout",
+    "nypr-ui": "nypublicradio/nypr-ui#demo"
   },
   "keywords": [
     "ember-addon"
   ],
   "dependencies": {
-    "ember-hifi": "^1.7.0",
     "ember-cli-babel": "^5.1.7",
-    "ember-cli-htmlbars": "^1.0.10",
-    "ember-holygrail-layout": "nypublicradio/ember-holygrail-layout",
-    "nypr-ui": "nypublicradio/nypr-ui"
+    "ember-cli-htmlbars": "^1.0.10"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
