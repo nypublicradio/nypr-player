@@ -50,8 +50,8 @@ test('space activates playpause button', function(assert) {
   visit('/');
 
   andThen(() => {
-    assert.equal($('[data-test-selector=listen-button]').length, 1);
-    assert.equal($('[data-test-selector=listen-button].active').length, 0);
+    assert.equal($('[data-test-selector=listen-button]').length, 1, 'listen button should be visible');
+    assert.equal($('[data-test-selector=listen-button].active').length, 0, 'listen button should not be active');
   });
 
   andThen(() => {
@@ -60,7 +60,7 @@ test('space activates playpause button', function(assert) {
   });
 
   andThen(() => {
-    assert.equal($('[data-test-selector=listen-button].active').length, 1);
+    assert.equal($('[data-test-selector=listen-button].active').length, 1, 'listen button should be active');
   });
 
   andThen(() => {
@@ -69,8 +69,8 @@ test('space activates playpause button', function(assert) {
   });
 
   andThen(() => {
-    assert.equal($('[data-test-selector=listen-button]').length, 1);
-    assert.equal($('[data-test-selector=listen-button].active').length, 0);
+    assert.equal($('[data-test-selector=listen-button]').length, 1, 'listen button should be visible');
+    assert.equal($('[data-test-selector=listen-button].active').length, 0, 'listen button should not be active');
   });
 });
 
