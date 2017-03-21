@@ -26,6 +26,16 @@ export default Ember.Component.extend({
       return 'is-paused';
     }
   }),
+  
+  init() {
+    this._super(...arguments);
+
+    let audioToLoad = this.get('sound');
+    if (audioToLoad) {
+      let hifi = get(this, 'hifi');
+      hifi.load(audioToLoad).then(({sound}) => hifi.setCurrentSound(sound));
+    }
+  },
 
   actions: {
     playOrPause() {
