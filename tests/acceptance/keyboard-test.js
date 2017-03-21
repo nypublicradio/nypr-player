@@ -1,6 +1,6 @@
 import { test, skip } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
-import '../../tests/helpers/hifi-acceptance-helper';
+
 
 moduleForAcceptance('Acceptance | keyboard');
 
