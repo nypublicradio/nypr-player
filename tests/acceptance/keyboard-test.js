@@ -1,4 +1,4 @@
-import { test, skip } from 'qunit';
+import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
 
@@ -74,7 +74,7 @@ test('space activates playpause button', function(assert) {
   });
 });
 
-skip('right arrow activates fastforward button', function(assert) {
+test('right arrow activates fastforward button', function(assert) {
   visit('/');
 
   andThen(() => {
@@ -102,7 +102,7 @@ skip('right arrow activates fastforward button', function(assert) {
   });
 });
 
-skip('left arrow activates rewind button', function(assert) {
+test('left arrow activates rewind button', function(assert) {
   visit('/');
 
   andThen(() => {
