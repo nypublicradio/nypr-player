@@ -3,16 +3,13 @@ machine:
     version: 6.9.2
 
 dependencies:
-  pre:
+  override:
     - sudo apt-get update && sudo apt-get install ruby-sass
     - gem update --system
     - gem install compass --no-ri --no-rdoc
-    - npm set progress=false
-    - npm install -g bower
+    - yarn global add bower
+    - yarn
     - bower i
-  post:
-    - npm i ember-hifi
-    - npm i nypr-ui
   cache_directories:
     - /opt/circleci/nodejs/v6.9.2/bin/
     - /opt/circleci/nodejs/v6.9.2/lib/node_modules
