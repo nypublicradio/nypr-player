@@ -4,6 +4,7 @@
     height: 100%;
     width: $width;
     @include transition(color $nypr-player-transition-timing ease-in-out, opacity $nypr-player-transition-timing ease-in-out);
+    pointer-events: none;
   }
 }
 
@@ -37,6 +38,7 @@
   height:100%;
 
   .listen-button-content {
+    pointer-events: none;
     width: 48px;
     @include mq($nypr-player-medium-and-up) {
       width: 55px;
