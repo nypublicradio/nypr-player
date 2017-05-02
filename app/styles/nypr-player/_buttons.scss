@@ -148,6 +148,11 @@
   height: 100%;
   width: 55px;
   position: relative;
+  color: white;
+
+  &:hover, &:active {
+    background-color: $wqxrblue;
+  }
 
 
   .nypr-player-share-icon {
@@ -177,23 +182,24 @@
     
   }
 
+  > .nypr-player-share-icon.bar-open {
+    opacity: 1;
+  }
+  > .nypr-player-share-icon.bar-close {
+    opacity: 0;
+  } 
 
-}
-.nypr-player-share-button {
-  > .nypr-player-share-icon.mod-open {
-    opacity: 1;
+  &.is-open {
+    background-color: $wqxrblue;
+
+    > .nypr-player-share-icon.bar-open {
+      opacity: 0;
+    }
+    > .nypr-player-share-icon.bar-close {
+      opacity: 1;
+    }
   }
-  > .nypr-player-share-icon.mod-close {
-    opacity: 0;
-  }
-}
-.nypr-player-share-button.is-open {
-  > .nypr-player-share-icon.mod-open {
-    opacity: 0;
-  }
-  > .nypr-player-share-icon.mod-close {
-    opacity: 1;
-  }
+
 }
 
 
@@ -309,6 +315,7 @@
   border-radius: 50%;
   background: transparent;
   color: $nypr-player-button-color;
+  margin: 3.5px;
   margin-right: 15px;
   border: 0;
   outline: 0;
