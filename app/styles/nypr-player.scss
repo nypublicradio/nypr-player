@@ -86,7 +86,7 @@
     margin-right: 5px;
     color: $nypr-player-info-text-color;
 
-    &:hover {
+    &:hover, &:focus {
       border-bottom-color: $nypr-player-link-underline-color;
     }
   }
