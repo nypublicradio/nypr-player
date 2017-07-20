@@ -11,11 +11,13 @@ export default Ember.Component.extend({
   disabled            : not('ready'),
   'aria-label'        : readOnly('title'),
   'data-test-selector': 'listen-button',
+  'data-story'        : readOnly('storyTitle'),
+  'data-show'         : readOnly('showTitle'),
 
   tagName             : 'button',
   classNames          : ['nypr-player-button mod-listen'],
   classNameBindings   : ['isHovering', 'playState'],
-  attributeBindings   : ['aria-label', 'title', 'disabled', 'data-test-selector'],
+  attributeBindings   : ['aria-label', 'title', 'disabled', 'data-test-selector', 'data-story', 'data-show'],
 
   title               : computed('currentTitle', function() {
     if (this.get('currentTitle')) {
