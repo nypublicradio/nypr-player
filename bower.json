@@ -1,7 +1,0 @@
-{
-  "name": "nypr-player",
-  "dependencies": {
-    "hls.js": "^0.6.1",
-    "howler.js": "^2.0.0"
-  }
-}
