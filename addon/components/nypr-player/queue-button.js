@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import layout from '../../templates/components/nypr-player/queue-button';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 
 export default Ember.Component.extend({
   layout,
@@ -20,15 +21,16 @@ export default Ember.Component.extend({
       get(this, 'showModal')();
     }
   },
-  didUpdateAttrs({oldAttrs}) {
+  didUpdateAttrs() {
     this._super(...arguments);
     let newLength = get(this, 'queueLength');
-    let oldLength = oldAttrs ? oldAttrs.queueLength.value : 0;
+    let oldLength = get(this, '_oldLength');
 
     // guard against users with disabled cookies
     if (typeof oldLength === 'undefined' || newLength <= oldLength) {
       return;
     }
+    set(this, '_oldLength', newLength);
 
     this.$().addClass('animate')
       .one('animationend', () => this.$().removeClass('animate'));
