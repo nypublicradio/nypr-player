@@ -1,7 +1,7 @@
 {
   "name": "nypr-player",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.2",
+  "description": "The audio player UI for NYPR stations.",
   "keywords": [
     "ember-addon"
   ],
