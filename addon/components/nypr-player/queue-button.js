@@ -24,10 +24,9 @@ export default Ember.Component.extend({
   didUpdateAttrs() {
     this._super(...arguments);
     let newLength = get(this, 'queueLength');
-    let oldLength = get(this, '_oldLength');
+    let oldLength = get(this, '_oldLength') || 0;
 
-    // guard against users with disabled cookies
-    if (typeof oldLength === 'undefined' || newLength <= oldLength) {
+    if (newLength <= oldLength) {
       return;
     }
     set(this, '_oldLength', newLength);
