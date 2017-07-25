@@ -7,9 +7,7 @@ dependencies:
     - sudo apt-get update && sudo apt-get install ruby-sass
     - gem update --system
     - gem install compass --no-ri --no-rdoc
-    - yarn global add bower
     - yarn
-    - bower i
   cache_directories:
     - /opt/circleci/nodejs/v6.9.2/bin/
     - /opt/circleci/nodejs/v6.9.2/lib/node_modules
