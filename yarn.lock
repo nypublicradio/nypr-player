@@ -2460,9 +2460,9 @@ ember-getowner-polyfill@^1.0.1, ember-getowner-polyfill@^1.1.0:
     ember-cli-version-checker "^1.2.0"
     ember-factory-for-polyfill "^1.1.0"
 
-ember-hifi@^1.11.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/ember-hifi/-/ember-hifi-1.11.0.tgz#037fc8e0efcd93aaaa56ae61d4ee54392025d5f0"
+ember-hifi@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/ember-hifi/-/ember-hifi-1.11.1.tgz#b9380656b19fccfea2d11dc2c639b38ca2652790"
   dependencies:
     broccoli-funnel "^1.2.0"
     broccoli-merge-trees "^1.2.0"
