@@ -45,7 +45,7 @@ export default Component.extend({
   hifi: service(),
   actions: {
     play() {
-      this.get('hifi').play();
+      this.get('hifi').play(URL);
     }
   }
 });
