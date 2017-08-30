@@ -13,10 +13,8 @@ This is the audio player you may have seen on such sites as [wnyc.org](http://wn
 ## Install
 
 ```shell
-ember install nypr-player
+yarn add nypr-player
 ```
-
-This will install [ember-hifi](http://github.com/nypublicradio/ember-hifi) as an service to back the player and all audio controls.
 
 ## Basic Usage
 
