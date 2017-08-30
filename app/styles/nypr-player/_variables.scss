@@ -2,9 +2,9 @@ $nypr-player-base-font                       : 16 !default;
 $nypr-player-transition-timing               : 100ms !default;
 $nypr-player-transition-timing-queue         : 150ms !default;
 
-$nypr-player-medium-breakpoint               : 801;
-$nypr-player-medium-and-up                   : "(min-width: #{$nypr-player-medium-breakpoint}px)";
-$nypr-player-small-only                      : "(max-width: #{$nypr-player-medium-breakpoint - 1}px)";
+$nypr-player-medium-breakpoint               : 801 !default;
+$nypr-player-medium-and-up                   : "(min-width: #{$nypr-player-medium-breakpoint}px)" !default;
+$nypr-player-small-only                      : "(max-width: #{$nypr-player-medium-breakpoint - 1}px)" !default;
 
 $nypr-player-zindex                          : 1200 !default;
 $nypr-player-backdrop-zindex                 : -1 !default;
@@ -14,22 +14,22 @@ $nypr-player-primary-color                   : #FFF !default;
 $nypr-player-background-color                : #333 !default;
 $nypr-player-accent-color                    : #128cf4 !default;
 
-$nypr-player-background-image-opacity        : 0.5;
+$nypr-player-background-image-opacity        : 0.5 !default;
 
 
 
 /* Color specifics are made out of the button basics */
 
-$nypr-player-floating-queue-button-background: $nypr-player-background-color;
+$nypr-player-floating-queue-button-background: $nypr-player-background-color !default;
 $nypr-player-button-color                    : $nypr-player-primary-color !default;
 $nypr-player-button-hover-color              : rgba($nypr-player-primary-color, 0.8) !default;
 $nypr-player-button-active-color             : $nypr-player-accent-color !default;
-$nypr-player-slider-handle-color             : $nypr-player-accent-color;
+$nypr-player-slider-handle-color             : $nypr-player-accent-color !default;
 
 $nypr-player-info-text-color                 : $nypr-player-primary-color !default;
 $nypr-player-link-underline-color            : $nypr-player-primary-color !default;
 $nypr-player-timelabel-color                 : $nypr-player-primary-color !default;
-$nypr-player-timelabel-total-color           : rgba($nypr-player-primary-color, 0.6);
+$nypr-player-timelabel-total-color           : rgba($nypr-player-primary-color, 0.6) !default;
 
 $nypr-player-backdrop-color                  : rgba($nypr-player-background-color, 0.75) !default;
 $nypr-player-progress-played-color           : $nypr-player-accent-color !default;
