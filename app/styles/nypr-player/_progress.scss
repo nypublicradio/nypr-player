@@ -8,7 +8,7 @@
   left: 0;
   right: 0;
   cursor: pointer;
-  @include display-flex;
+  display: flex;
 }
 
 .nypr-player-progress-wrapper,
@@ -61,7 +61,7 @@
     left: 0;
     opacity: 0;
     bottom: 0;
-    @include transition(opacity 200ms linear, transform 200ms);
+    transition: opacity 200ms linear, transform 200ms;
 
     .is-loaded & {
       opacity: 1;
@@ -76,7 +76,7 @@
     .touchevents .nypr-player-progress.is-touching &  {
       transform: scale(3.3, 3.3) translateY(-7px);
       opacity: 0.75;
-      @include transition(opacity 200ms linear 200ms, transform 200ms ease-out 200ms);
+      transition: opacity 200ms linear 200ms, transform 200ms ease-out 200ms;
     }
 
     &:after {
