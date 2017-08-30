@@ -27,12 +27,6 @@
           {{yield (hash for=(component 'content-for' yieldName='streamInfo'))}}
         </div>
       {{else}}
-        {{#if media.isNyprPlayerSmallOnly}}
-          {{nypr-player/time-label
-            position = hifi.position
-            duration = hifi.duration}}
-        {{/if}}
-
         <div class="nypr-player-progress-container">
           {{nypr-player/progress-meter
             downloaded  = hifi.percentLoaded
@@ -40,11 +34,9 @@
             duration    = hifi.duration
             setPosition = (action 'setPosition')}}
 
-          {{#if media.isNyprPlayerMediumAndUp}}
-            {{nypr-player/time-label
-              position = hifi.position
-              duration = hifi.duration}}
-          {{/if}}
+          {{nypr-player/time-label
+            position = hifi.position
+            duration = hifi.duration}}
         </div>
       {{/if}}
     </div>
