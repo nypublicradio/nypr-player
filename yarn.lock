@@ -4771,7 +4771,7 @@ number-is-nan@^1.0.0:
 
 nypr-ui@nypublicradio/nypr-ui#node-sass:
   version "0.0.0"
-  resolved "https://codeload.github.com/nypublicradio/nypr-ui/tar.gz/7d95d21c93184284c21953f579ca41eaae91f25d"
+  resolved "https://codeload.github.com/nypublicradio/nypr-ui/tar.gz/74835c61a1bf1489f7f002b0b81b5630b37874d4"
   dependencies:
     ember-basic-dropdown "0.33.1"
     ember-cli-babel "^6.6.0"
