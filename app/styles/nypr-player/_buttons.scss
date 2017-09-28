@@ -3,14 +3,14 @@
   > .nypr-player-icon {
     height: 100%;
     width: $width;
-    @include transition(color $nypr-player-transition-timing ease-in-out, opacity $nypr-player-transition-timing ease-in-out);
+    transition: color $nypr-player-transition-timing ease-in-out, opacity $nypr-player-transition-timing ease-in-out;
     pointer-events: none;
   }
 }
 
 .nypr-player-button {
-  @include btn();
-  @include blank-button();
+  @include btn;
+  @include blank-button;
   @include svg-color($nypr-player-button-color);
   height: 100%;
 
@@ -61,7 +61,7 @@
     margin: auto;
 
     display: block;
-    @include transition(fill $nypr-player-transition-timing ease-in-out, opacity $nypr-player-transition-timing ease-in-out);
+    transition: fill $nypr-player-transition-timing ease-in-out, opacity $nypr-player-transition-timing ease-in-out;
     transform: translateZ(0);
     will-change: fill,opacity;
   }
@@ -69,11 +69,11 @@
   position: relative;
 
   .listen-spinner {
-    @include spinner()
+    @include spinner;
   }
   .listen-spinner:after, .listen-spinner:before{
     display: inline-block;
-    @include transition(opacity 150ms ease);
+    transition: opacity 150ms ease;
   }
 
   &.is-paused {
@@ -261,7 +261,7 @@
   margin-right: 15px;
   border: 0;
   outline: 0;
-  @include display-flex;
+  display: flex;
   height: 100%;
 
   &.is-floating {
@@ -271,7 +271,7 @@
     border: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     background: $nypr-player-floating-queue-button-background;
-    @include transition(color $nypr-player-transition-timing ease-in-out);
+    transition: color $nypr-player-transition-timing ease-in-out;
 
     .nypr-player-queue-icon {
       &.mod-close {
@@ -338,12 +338,12 @@
   top: 43px;
   font-size: 12px;
   font-weight: 600;
-  @include transition(color $nypr-player-transition-timing ease-in-out);
+  transition: color $nypr-player-transition-timing ease-in-out;
 }
 
 /* This isn't using the player-icon class because this is a different animal */
 .nypr-player-queue-icon {
-  @include transition(opacity $nypr-player-transition-timing ease-in-out);
+  transition: opacity $nypr-player-transition-timing ease-in-out;
   width: 19px;
   height: 19px;
   top: -18px;
@@ -361,7 +361,7 @@
   > .nypr-player-queue-bar {
     background: $nypr-player-button-color;
     position: absolute;
-    @include transition(background $nypr-player-transition-timing ease-in-out);
+    transition: background $nypr-player-transition-timing ease-in-out;
   }
 
   > .nypr-player-queue-dot {

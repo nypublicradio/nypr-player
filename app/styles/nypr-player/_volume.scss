@@ -10,7 +10,7 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
 .nypr-player-volume {
   margin-left: 42px;
   margin-right: 18px;
-  @include display-flex;
+  display: flex;
   height: 100%;
 }
 
@@ -22,7 +22,7 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
 }
 
 .nypr-player-volume-control {
-  @include display-flex;
+  display: flex;
   height: 100%;
   cursor: pointer;
   outline: 0;
@@ -33,7 +33,7 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
   &:focus {
     .nypr-player-volume-slider-wrapper, {
       width: $slider-width + $slider-spacing;
-      @include transition(width .3s cubic-bezier(0.4, 0.4, 0.265, 1.55));
+      transition: width .3s cubic-bezier(0.4, 0.4, 0.265, 1.55);
     }
   }
 }
@@ -47,7 +47,7 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
   overflow: hidden;
   // when transitioning width to 0, make sure bezier curve doesn't go above the 1 line, because that will
   // cause width to go negative in safari and probably have unintended effects.
-  @include transition(width .3s cubic-bezier(0.4, 0.4, 0.265, 0.99));
+  transition: width .3s cubic-bezier(0.4, 0.4, 0.265, 0.99);
 }
 
 .nypr-player-volume-slider {
@@ -87,7 +87,7 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
   background: $nypr-player-slider-handle-color;
   margin-top: -$handle-radius;
   left: 100%;
-  @include translateX(-$handle-radius);
+  transform: translateX(-$handle-radius);
 }
 
 .nypr-player-button.mod-volume {

@@ -81,7 +81,7 @@ $nypr-player-base-font: 16;
   polygon, rect, circle, path {
     color: $color;
     fill: currentColor;
-    @include transition(color $nypr-player-transition-timing ease-in-out, stroke $nypr-player-transition-timing ease-in-out, fill $nypr-player-transition-timing ease-in-out);
+    transition: color $nypr-player-transition-timing ease-in-out, stroke $nypr-player-transition-timing ease-in-out, fill $nypr-player-transition-timing ease-in-out;
   }
 }
 

@@ -1,16 +1,10 @@
 machine:
   node:
-    version: 6.9.2
+    version: 6.11.3
 
 dependencies:
   override:
-    - sudo apt-get update && sudo apt-get install ruby-sass
-    - gem update --system
-    - gem install compass --no-ri --no-rdoc
-    - yarn
-  cache_directories:
-    - /opt/circleci/nodejs/v6.9.2/bin/
-    - /opt/circleci/nodejs/v6.9.2/lib/node_modules
+    - yarn --pure-lockfile
 
 test:
   override:
