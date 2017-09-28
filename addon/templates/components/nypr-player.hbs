@@ -52,7 +52,11 @@
           isMuted    = hifi.isMuted}}
       {{/if}}
 
-      {{yield (hash for=(component 'content-for' yieldName='aux' yieldArguments=(hash queueButton=(component 'nypr-player.queue-button'))))}}
+      {{yield (hash for=(component 'content-for' yieldName='queueButton' yieldArguments=(hash queueButton=(component 'nypr-player.queue-button' ))))}}
+
+      {{yield (hash for=(component 'content-for' yieldName='shareButton' yieldArguments=(hash shareButton=(component 'nypr-player.share-button' ))))}}
+   
+
     </div>
   {{/g.right}}
 {{/holygrail-layout}}

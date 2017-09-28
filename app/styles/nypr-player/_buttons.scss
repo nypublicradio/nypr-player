@@ -143,7 +143,64 @@
   }
 }
 
+/* Share button */
+.nypr-player-share-button {
+  height: 100%;
+  width: 55px;
+  position: relative;
+  color: white;
 
+  &:hover, &:active {
+    background-color: $wqxrblue;
+  }
+
+
+  .nypr-player-share-icon {
+    @include transition(opacity $nypr-player-transition-timing ease-in-out);
+      width: 19px;
+      height: 19px;
+      top: -18px;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      position: absolute;
+
+    path {
+      fill: white;
+    }
+  }
+
+  .nypr-player-share-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 43px;
+    font-size: 12px;
+    font-weight: 600;
+    @include transition(color $nypr-player-transition-timing ease-in-out);
+    
+  }
+
+  > .nypr-player-share-icon.bar-open {
+    opacity: 1;
+  }
+  > .nypr-player-share-icon.bar-close {
+    opacity: 0;
+  } 
+
+  &.is-open {
+    background-color: $wqxrblue;
+
+    > .nypr-player-share-icon.bar-open {
+      opacity: 0;
+    }
+    > .nypr-player-share-icon.bar-close {
+      opacity: 1;
+    }
+  }
+
+}
 
 
 /* Queue button */
@@ -258,6 +315,7 @@
   border-radius: 50%;
   background: transparent;
   color: $nypr-player-button-color;
+  margin: 3.5px;
   margin-right: 15px;
   border: 0;
   outline: 0;
