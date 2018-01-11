@@ -25,7 +25,7 @@
     "ember-cli-sass": "^7.0.0",
     "ember-hifi": "^1.11.1",
     "ember-moment": "^7.4.1",
-    "nypr-ui": "~0.0.0"
+    "nypr-ui": "~0.1.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
