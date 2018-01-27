@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../../templates/components/nypr-player/fast-forward-button';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName: 'button',
   classNames: ['nypr-player-button mod-fastforward'],

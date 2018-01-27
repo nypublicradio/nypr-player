@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 // A test to see if we can change volume on HTML5 Audio Elements.
 // Mostly for iOS
 // https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html#//apple_ref/doc/uid/TP40009523-CH5-SW11
@@ -13,4 +13,4 @@ export function canChangeVolume() {
   return false;
 }
 
-export default Ember.Helper.helper(canChangeVolume);
+export default helper(canChangeVolume);

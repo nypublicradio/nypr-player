@@ -1,11 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../../templates/components/nypr-player/listen-button';
-import service from 'ember-service/inject';
-import computed, { readOnly, not } from 'ember-computed';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
+import { inject as service } from '@ember/service';
+import { computed, get, set } from '@ember/object';
+import { readOnly, not } from '@ember/object/computed';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   hifi                : service(),
   disabled            : not('ready'),

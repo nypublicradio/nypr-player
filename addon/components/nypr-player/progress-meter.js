@@ -1,11 +1,16 @@
-import Ember from 'ember';
+import { bool } from '@ember/object/computed';
+import { bind } from '@ember/runloop';
+import Component from '@ember/component';
+import { htmlSafe } from '@ember/string';
+import { set, get, computed, getProperties } from '@ember/object';
 import layout from '../../templates/components/nypr-player/progress-meter';
-import { findTouchById, isSimulatedMouseEvent } from '../../utils/touch-utils';
-const { computed, get, set } = Ember;
-const { htmlSafe } = Ember.String;
-export default Ember.Component.extend({
+import {
+  findTouchById,
+  isSimulatedMouseEvent
+} from '../../utils/touch-utils';
+export default Component.extend({
   layout,
-  isLoaded                : computed.bool('duration'),
+  isLoaded                : bool('duration'),
   isHovering              : false,
   isDragging              : false,
   isTouching              : false,
@@ -23,7 +28,7 @@ export default Ember.Component.extend({
   playheadPosition        : computed('isDragging', 'isTouching', 'handlePosition', 'position', 'duration', function() {
     let p;
     let {isDragging, isTouching, handlePosition, position, duration} =
-      Ember.getProperties(this, 'isDragging', 'isTouching', 'handlePosition', 'position', 'duration');
+      getProperties(this, 'isDragging', 'isTouching', 'handlePosition', 'position', 'duration');
 
     if (isDragging || isTouching) {
       p = handlePosition;
@@ -98,7 +103,7 @@ export default Ember.Component.extend({
   _startDragging(touch) {
     set(this, 'isDragging', true);
     if (touch) {
-      this.$().on('touchmove', Ember.run.bind(this, e => {
+      this.$().on('touchmove', bind(this, e => {
         // prevent touch scrolling
         e.preventDefault();
         let event = e.originalEvent;
@@ -108,7 +113,7 @@ export default Ember.Component.extend({
         }
       }));
     } else {
-      this.$().on('mousemove', Ember.run.bind(this, e => {
+      this.$().on('mousemove', bind(this, e => {
         // prevent dragging and selecting
         e.preventDefault();
         this._updateAudioPosition(e);

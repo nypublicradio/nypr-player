@@ -1,8 +1,8 @@
-import Ember from 'ember';
-import computed from 'ember-computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/components/content-for';
 
-let ContentFor = Ember.Component.extend({
+let ContentFor = Component.extend({
   layout,
   tagName: '',
 

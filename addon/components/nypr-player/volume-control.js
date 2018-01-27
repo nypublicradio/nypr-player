@@ -1,11 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../../templates/components/nypr-player/volume-control';
-import get from 'ember-metal/get';
-import { isEmpty } from 'ember-utils';
-import computed from 'ember-computed';
-import { htmlSafe } from 'ember-string';
+import { get, computed } from '@ember/object';
+import { isEmpty } from '@ember/utils';
+import { htmlSafe } from '@ember/string';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   classNames: ['nypr-player-volume'],
   classNameBindings: ['isMuted'],

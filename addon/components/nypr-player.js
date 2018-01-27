@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import service from 'ember-service/inject';
-import computed, { reads } from 'ember-computed';
-import get from 'ember-metal/get';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { get, computed } from '@ember/object';
+import { reads } from '@ember/object/computed';
 import layout from '../templates/components/nypr-player';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   hifi                  : service(),
   classNames            : ['nypr-player'],
