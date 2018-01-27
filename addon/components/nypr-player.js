@@ -26,7 +26,14 @@ export default Component.extend({
       return 'is-paused';
     }
   }),
-  
+
+  // EVENT HANDLERS
+  onPlay() {},
+  onPause() {},
+  onSetPosition() {},
+  onRewind() {},
+  onFastForward() {},
+
   init() {
     this._super(...arguments);
 
@@ -40,23 +47,23 @@ export default Component.extend({
   actions: {
     playOrPause() {
       if (get(this, 'isPlaying')) {
-        this.sendAction('onPause');
+        this.onPause();
         get(this, 'hifi').togglePause();
       } else {
-        this.sendAction('onPlay');
+        this.onPlay();
         get(this, 'hifi').togglePause();
       }
     },
     setPosition(p) {
-      this.sendAction('onSetPosition');
+      this.onSetPosition();
       get(this, 'hifi').set('position', (p * get(this, 'hifi.currentSound.duration')));
     },
     rewind() {
-      this.sendAction('onRewind');
+      this.onRewind();
       get(this, 'hifi').rewind(15000);
     },
     fastForward() {
-      this.sendAction('onFastForward');
+      this.onFastForward();
       get(this, 'hifi').fastForward(15000);
     },
     setVolume(vol) {
