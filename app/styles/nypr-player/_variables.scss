@@ -36,3 +36,6 @@ $nypr-player-progress-played-color           : $nypr-player-accent-color !defaul
 $nypr-player-progress-downloaded-color       : rgba($nypr-player-primary-color, 0.7) !default;
 $nypr-player-spinner-primary-color           : rgba($nypr-player-primary-color, 0.5) !default;
 $nypr-player-spinner-accent-color            : rgba($nypr-player-primary-color, 0.8) !default;
+
+// For `nypr-ui` compat
+$transition-timing: $nypr-player-transition-timing;
