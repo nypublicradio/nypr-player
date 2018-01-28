@@ -16,6 +16,7 @@ module.exports = function(defaults) {
     This build file does *not* influence how the addon or the app using it
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
+  app.import('node_modules/normalize.css/normalize.css');
 
   return app.toTree();
 };
