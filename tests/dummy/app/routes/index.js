@@ -1,8 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-const silence = '/assets/silence.mp3';
-
 export default Route.extend({
   hifi: service(),
 
@@ -10,6 +8,13 @@ export default Route.extend({
     // this.get('hifi').load(silence, {useConnections: 'NativeAudio'});
   },
   model() {
-    return {sound: silence};
+    return {
+      sound: '/audio/audio.mp3',
+      metadata: {
+        title:    'Story Title',
+        url:      'http://example.com/story',
+        imageURL: '/assets/kitty.jpeg'
+      }
+    };
   }
 });
