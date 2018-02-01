@@ -31,6 +31,16 @@
   .ember-holygrail-centered {
     height:100%;
   }
+
+  // default styles add additional compenstation for a transition from
+  // the bottom of the viewport, but that's not the only usecase
+  // the class will reset some of the offsets that compensate for the
+  // animated transition
+  &.nypr-player__freestanding {
+    position: relative;
+    padding: 0;
+    bottom: auto;
+  }
 }
 
 /* Left controls */
@@ -51,9 +61,6 @@
 
   width: 100%;
   margin: 3.5px;
-  height: 100%;
-  width:100%;
-
 }
 
 .nypr-player .ember-holygrail-left .nypr-player-controls {

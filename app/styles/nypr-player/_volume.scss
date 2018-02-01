@@ -116,6 +116,12 @@ $slider-spacing: $slider-spacing-left + $slider-spacing-right;
     position: absolute;
     top: 22px;
     right: 5px;
+
+    .nypr-player__freestanding & {
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
   }
 
   &:focus {
