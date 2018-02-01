@@ -1,0 +1,1 @@
+export { default } from 'nypr-player/components/content-for';
