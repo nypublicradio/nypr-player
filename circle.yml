@@ -11,3 +11,10 @@ dependencies:
 test:
   override:
     - yarn test
+
+deployment:
+  docs:
+    branch: master
+    commands:
+      - git checkout gh-pages; git checkout master
+      - ./node_modules/ember-cli/bin/ember deploy production
