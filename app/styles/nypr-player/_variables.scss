@@ -1,3 +1,4 @@
+// BEGIN-SNIPPET sass-variables
 $nypr-player-base-font                       : 16 !default;
 $nypr-player-transition-timing               : 100ms !default;
 $nypr-player-transition-timing-queue         : 150ms !default;
@@ -16,10 +17,7 @@ $nypr-player-accent-color                    : #128cf4 !default;
 
 $nypr-player-background-image-opacity        : 0.5 !default;
 
-
-
 /* Color specifics are made out of the button basics */
-
 $nypr-player-floating-queue-button-background: $nypr-player-background-color !default;
 $nypr-player-button-color                    : $nypr-player-primary-color !default;
 $nypr-player-button-hover-color              : rgba($nypr-player-primary-color, 0.8) !default;
@@ -36,6 +34,7 @@ $nypr-player-progress-played-color           : $nypr-player-accent-color !defaul
 $nypr-player-progress-downloaded-color       : rgba($nypr-player-primary-color, 0.7) !default;
 $nypr-player-spinner-primary-color           : rgba($nypr-player-primary-color, 0.5) !default;
 $nypr-player-spinner-accent-color            : rgba($nypr-player-primary-color, 0.8) !default;
+// END-SNIPPET
 
 // For `nypr-ui` compat
 $transition-timing: $nypr-player-transition-timing;

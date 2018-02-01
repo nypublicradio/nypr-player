@@ -7,6 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('basic-usage');
+  this.route('styling');
+  this.route('advanced');
 });
 
 export default Router;

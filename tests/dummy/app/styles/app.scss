@@ -1,13 +1,19 @@
-$nypr-player-accent-color    : rgb(222, 30, 61);
-$nypr-player-primary-color   : #FFF;
-$nypr-player-background-color: #3E4458;
+$nypr-player-accent-color:        rgb(222, 30, 61);
+$nypr-player-primary-color:       #FFF;
+$nypr-player-background-color:    #3E4458;
+$nypr-player-progress-background: rgba(155, 155, 155, 0.25);
+
+$site-chrome-link-color: blue;
+$site-chrome-link-hover: gray;
 
 @import "nypr-player";
 @import "nypr-ui/site-chrome";
 
-.site-chrome__nav {
+.site-chrome__left-corner {
   @media (min-width: 800px) {
-    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 18px;
+    text-align: right;
   }
 }
 
@@ -15,7 +21,15 @@ body {
   font-family: sans-serif;
 }
 
+img {
+  max-width: 100%;
+}
+
 .page-title {
   font-size: 18px;
   margin: 0;
+}
+
+.l-page {
+  padding: 0 15px;
 }

@@ -1,22 +1,12 @@
-{{#nypr-player
-  sound                 = model.sound
-  currentTitle          = model.metadata.title
-  backdropImageUrl      = model.metadata.imageURL as |content|}}
+{{md-text text="
+## New York Public Radio Audio Player
 
-  {{#content.for 'trackInfo' as |args|}}
-    {{model.metadata.title}}
-  {{/content.for}}
+### So What?
+This is the audio player you may have seen on such sites as [wnyc.org](http://wnyc.org), now available for your use.
 
-  {{#content.for 'streamInfo' as |args|}}
-    {{integration.streamName}}
-  {{/content.for}}
+![on demand](/assets/screenshots/wnyc-player.png \"Player on WNYC\")
+"}}
 
-  {{#content.for 'aux' as |args|}}
-    {{args.queueButton
-      queueLength           = 0
-      showModal             = (action 'showModal')
-      closeModal            = (action 'closeModal')
-      isOpenModal           = modal}}
-  {{/content.for}}
-
-{{/nypr-player}}
+<p>
+  Read more about {{link-to 'Basic Usage' 'basic-usage'}}.
+</p>
