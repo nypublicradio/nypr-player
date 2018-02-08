@@ -1,5 +1,8 @@
 # nypr-player Changelog
 
+## 0.1.1
+- [CHORE] upgrade ember holygrail layout
+
 ## 0.1.0
 - [CHORE] Upgrade ember-cli and ember source
 - [ENHANCEMENT] Adds docs site
