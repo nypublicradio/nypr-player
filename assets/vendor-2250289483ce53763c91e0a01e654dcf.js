@@ -3842,7 +3842,7 @@ for(var o=0,a=0;a<r._sounds.length;a++)r._sounds[a]._paused&&!r._sounds[a]._ende
 if(!s)return null
 if(i&&!e&&(e=s._sprite||"__default"),"loaded"!==r._state){s._sprite=e,s._ended=!1
 var l=s._id
-return r._queue.push({event:"play",action:function(){r.play(l)}}),l}if(i&&!s._paused)return n||setTimeout(function(){r._emit("play",s._id)},0),s._id
+return r._queue.push({event:"play",action:function(){r.play(l)}}),l}if(i&&!s._paused)return n||r._loadQueue("play"),s._id
 r._webAudio&&t._autoResume()
 var c=Math.max(0,s._seek>0?s._seek:r._sprite[e][0]/1e3),u=Math.max(0,(r._sprite[e][0]+r._sprite[e][1])/1e3-c),d=1e3*u/Math.abs(s._rate)
 s._paused=!1,s._ended=!1,s._sprite=e,s._seek=c,s._start=r._sprite[e][0]/1e3,s._stop=(r._sprite[e][0]+r._sprite[e][1])/1e3,s._loop=!(!s._loop&&!r._sprite[e][2])
@@ -3851,10 +3851,13 @@ if(r._webAudio){var m=function(){r._refreshBuffer(s)
 var e=s._muted||r._muted?0:s._volume
 p.gain.setValueAtTime(e,t.ctx.currentTime),s._playStart=t.ctx.currentTime,void 0===p.bufferSource.start?s._loop?p.bufferSource.noteGrainOn(0,c,86400):p.bufferSource.noteGrainOn(0,c,u):s._loop?p.bufferSource.start(0,c,86400):p.bufferSource.start(0,c,u),d!==1/0&&(r._endTimers[s._id]=setTimeout(r._ended.bind(r,s),d)),n||setTimeout(function(){r._emit("play",s._id)},0)}
 "running"===t.state?m():(r.once("resume",m),r._clearTimer(s._id))}else{var f=function(){p.currentTime=c,p.muted=s._muted||r._muted||t._muted||p.muted,p.volume=s._volume*t.volume(),p.playbackRate=s._rate
-try{var e=p.play()
-if("undefined"!=typeof Promise&&e instanceof Promise&&(r._playLock=!0,e.then(function(){r._playLock=!1,r._loadQueue()})),p.paused)return void r._emit("playerror",s._id,"Playback was unable to start. This is most commonly an issue on mobile devices where playback was not within a user interaction.")
-d!==1/0&&(r._endTimers[s._id]=setTimeout(r._ended.bind(r,s),d)),n||r._emit("play",s._id)}catch(e){r._emit("playerror",s._id,e)}},h=window&&window.ejecta||!p.readyState&&t._navigator.isCocoonJS
-if(4===p.readyState||h)f()
+try{var i=p.play()
+if("undefined"!=typeof Promise&&i instanceof Promise){r._playLock=!0
+var o=function(){r._playLock=!1,n||r._emit("play",s._id)}
+i.then(o,o)}else n||r._emit("play",s._id)
+if(p.paused)return void r._emit("playerror",s._id,"Playback was unable to start. This is most commonly an issue on mobile devices where playback was not within a user interaction.")
+"__default"!==e?r._endTimers[s._id]=setTimeout(r._ended.bind(r,s),d):(r._endTimers[s._id]=function(){r._ended(s),p.removeEventListener("ended",r._endTimers[s._id],!1)},p.addEventListener("ended",r._endTimers[s._id],!1))}catch(e){r._emit("playerror",s._id,e)}},h=window&&window.ejecta||!p.readyState&&t._navigator.isCocoonJS
+if(p.readyState>=3||h)f()
 else{var g=function(){f(),p.removeEventListener(t._canPlayEvent,g,!1)}
 p.addEventListener(t._canPlayEvent,g,!1),r._clearTimer(s._id)}}return s._id},pause:function(e){var t=this
 if("loaded"!==t._state||t._playLock)return t._queue.push({event:"pause",action:function(){t.pause(e)}}),t
@@ -3905,7 +3908,8 @@ if("loaded"!==r._state)return r._queue.push({event:"seek",action:function(){r.se
 var o=r._soundById(n)
 if(o){if(!("number"==typeof e&&e>=0)){if(r._webAudio){var a=r.playing(n)?t.ctx.currentTime-o._playStart:0,s=o._rateSeek?o._rateSeek-o._seek:0
 return o._seek+(s+a*Math.abs(o._rate))}return o._node.currentTime}var l=r.playing(n)
-l&&r.pause(n,!0),o._seek=e,o._ended=!1,r._clearTimer(n),l&&r.play(n,!0),!r._webAudio&&o._node&&(o._node.currentTime=e),r._emit("seek",n)}return r},playing:function(e){var t=this
+if(l&&r.pause(n,!0),o._seek=e,o._ended=!1,r._clearTimer(n),l&&r.play(n,!0),!r._webAudio&&o._node&&(o._node.currentTime=e),l&&!r._webAudio){var c=function(){r._playLock?setTimeout(c,0):r._emit("seek",n)}
+setTimeout(c,0)}else r._emit("seek",n)}return r},playing:function(e){var t=this
 if("number"==typeof e){var n=t._soundById(e)
 return!!n&&!n._paused}for(var r=0;r<t._sounds.length;r++)if(!t._sounds[r]._paused)return!0
 return!1},duration:function(e){var t=this,n=t._duration,r=t._soundById(e)
@@ -3920,15 +3924,17 @@ if(t===i[o].fn&&a||!t&&a){i.splice(o,1)
 break}}else if(e)r["_on"+e]=[]
 else{var s=Object.keys(r)
 for(o=0;o<s.length;o++)0===s[o].indexOf("_on")&&Array.isArray(r[s[o]])&&(r[s[o]]=[])}return r},once:function(e,t,n){return this.on(e,t,n,1),this},_emit:function(e,t,n){for(var r=this,i=r["_on"+e],o=i.length-1;o>=0;o--)i[o].id&&i[o].id!==t&&"load"!==e||(setTimeout(function(e){e.call(this,t,n)}.bind(r,i[o].fn),0),i[o].once&&r.off(e,i[o].fn,i[o].id))
-return r},_loadQueue:function(){var e=this
-if(e._queue.length>0){var t=e._queue[0]
-e.once(t.event,function(){e._queue.shift(),e._loadQueue()}),t.action()}return e},_ended:function(e){var n=this,r=e._sprite
+return r._loadQueue(e),r},_loadQueue:function(e){var t=this
+if(t._queue.length>0){var n=t._queue[0]
+n.event===e&&(t._queue.shift(),t._loadQueue()),e||n.action()}return t},_ended:function(e){var n=this,r=e._sprite
 if(!n._webAudio&&e._node&&!e._node.paused&&!e._node.ended&&e._node.currentTime<e._stop)return setTimeout(n._ended.bind(n,e),100),n
 var i=!(!e._loop&&!n._sprite[r][2])
 if(n._emit("end",e._id),!n._webAudio&&i&&n.stop(e._id,!0).play(e._id),n._webAudio&&i){n._emit("play",e._id),e._seek=e._start||0,e._rateSeek=0,e._playStart=t.ctx.currentTime
 var o=1e3*(e._stop-e._start)/Math.abs(e._rate)
 n._endTimers[e._id]=setTimeout(n._ended.bind(n,e),o)}return n._webAudio&&!i&&(e._paused=!0,e._ended=!0,e._seek=e._start||0,e._rateSeek=0,n._clearTimer(e._id),n._cleanBuffer(e._node),t._autoSuspend()),n._webAudio||i||n.stop(e._id),n},_clearTimer:function(e){var t=this
-return t._endTimers[e]&&(clearTimeout(t._endTimers[e]),delete t._endTimers[e]),t},_soundById:function(e){for(var t=this,n=0;n<t._sounds.length;n++)if(e===t._sounds[n]._id)return t._sounds[n]
+if(t._endTimers[e]){if("function"!=typeof t._endTimers[e])clearTimeout(t._endTimers[e])
+else{var n=t._soundById(e)
+n&&n._node&&n._node.removeEventListener("ended",t._endTimers[e],!1)}delete t._endTimers[e]}return t},_soundById:function(e){for(var t=this,n=0;n<t._sounds.length;n++)if(e===t._sounds[n]._id)return t._sounds[n]
 return null},_inactiveSound:function(){var e=this
 e._drain()
 for(var t=0;t<e._sounds.length;t++)if(e._sounds[t]._ended)return e._sounds[t].reset()
@@ -6690,7 +6696,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=Ember.Service.extend(
 var t=this.get("_cache"),n=Ember.A(e).map(function(e){return e.url||e}),r=Ember.A(n).map(function(e){return t.get(e)}),i=Ember.A(r).compact()
 return i.length>0?this.debug("cache hit for "+i[0].get("url")):this.debug("cache miss for "+n.join(",")),i[0]},cache:function(e){var t=this.get("_cache")
 this.debug("caching sound with url: "+e.get("url")),t.set(e.get("url"),e)}})}),define("ember-hifi/services/hifi",["exports","ember-hifi/helpers/one-at-a-time","ember-hifi/utils/promise-race","ember-hifi/utils/shared-audio-access","ember-hifi/mixins/debug-logging"],function(e,t,n,r,i){"use strict"
-Object.defineProperty(e,"__esModule",{value:!0}),e.default=Ember.Service.extend(Ember.Evented,i.default,{debugName:"ember-hifi",poll:Ember.inject.service(),soundCache:Ember.inject.service("hifi-cache"),isMobileDevice:Ember.computed({get:function(){return"ontouchstart"in window},set:function(e,t){return t}}),useSharedAudioAccess:Ember.computed.or("isMobileDevice","alwaysUseSingleAudioElement"),currentSound:null,isPlaying:Ember.computed.readOnly("currentSound.isPlaying"),isLoading:Ember.computed("currentSound.isLoading",{get:function(){return this.get("currentSound.isLoading")},set:function(e,t){return t}}),isStream:Ember.computed.readOnly("currentSound.isStream"),isFastForwardable:Ember.computed.readOnly("currentSound.isFastForwardable"),isRewindable:Ember.computed.readOnly("currentSound.isRewindable"),isMuted:Ember.computed.equal("volume",0),duration:Ember.computed.readOnly("currentSound.duration"),percentLoaded:Ember.computed.readOnly("currentSound.percentLoaded"),pollInterval:Ember.computed.reads("options.emberHifi.positionInterval"),defaultVolume:50,position:Ember.computed.alias("currentSound.position"),volume:Ember.computed({get:function(){return this.get("currentSound.volume")||this.get("defaultVolume")},set:function(e,t){return this.get("currentSound")&&this.get("currentSound")._setVolume(t),t>0&&this.set("unmuteVolume",t),t}}),init:function(){var e=Ember.getWithDefault(this,"options.emberHifi.connections",Ember.A()),n=Ember.getOwner(this)
+Object.defineProperty(e,"__esModule",{value:!0}),e.default=Ember.Service.extend(Ember.Evented,i.default,{debugName:"ember-hifi",poll:Ember.inject.service(),soundCache:Ember.inject.service("hifi-cache"),isMobileDevice:Ember.computed({get:function(){return"ontouchstart"in window},set:function(e,t){return t}}),useSharedAudioAccess:Ember.computed.or("isMobileDevice","alwaysUseSingleAudioElement"),currentSound:null,currentMetadata:Ember.computed("currentSound.metadata",{get:function(){return this.get("currentSound.metadata")},set:function(e,t){return t}}),isPlaying:Ember.computed.readOnly("currentSound.isPlaying"),isLoading:Ember.computed("currentSound.isLoading",{get:function(){return this.get("currentSound.isLoading")},set:function(e,t){return t}}),isStream:Ember.computed.readOnly("currentSound.isStream"),isFastForwardable:Ember.computed.readOnly("currentSound.isFastForwardable"),isRewindable:Ember.computed.readOnly("currentSound.isRewindable"),isMuted:Ember.computed.equal("volume",0),duration:Ember.computed.readOnly("currentSound.duration"),percentLoaded:Ember.computed.readOnly("currentSound.percentLoaded"),pollInterval:Ember.computed.reads("options.emberHifi.positionInterval"),defaultVolume:50,position:Ember.computed.alias("currentSound.position"),volume:Ember.computed({get:function(){return this.get("currentSound.volume")||this.get("defaultVolume")},set:function(e,t){return this.get("currentSound")&&this.get("currentSound")._setVolume(t),t>0&&this.set("unmuteVolume",t),t}}),init:function(){var e=Ember.getWithDefault(this,"options.emberHifi.connections",Ember.A()),n=Ember.getOwner(this)
 n.registerOptionsForType("ember-hifi@hifi-connection",{instantiate:!1}),n.registerOptionsForType("hifi-connection",{instantiate:!1}),Ember.set(this,"alwaysUseSingleAudioElement",Ember.getWithDefault(this,"options.emberHifi.alwaysUseSingleAudioElement",!1)),Ember.set(this,"appEnvironment",Ember.getWithDefault(this,"options.environment","development")),Ember.set(this,"_connections",{}),Ember.set(this,"oneAtATime",t.default.create()),Ember.set(this,"volume",50),this._activateConnections(e),this.set("isReady",!0),this.get("poll").addPoll({interval:Ember.get(this,"pollInterval")||500,callback:Ember.run.bind(this,this._setCurrentPosition)}),this._super.apply(this,arguments)},availableConnections:function(){return Object.keys(this.get("_connections"))},load:function(e,t){var n=this,r=this._createAndUnlockAudio()
 t=Ember.assign({debugName:"load-"+Math.random().toString(36).replace(/[^a-z]+/g,"").substr(0,3),metadata:{}},t)
 var i=new Ember.RSVP.Promise(function(i,o){return n._resolveUrls(e).then(function(e){if(Ember.isEmpty(e))return o(new Error("[ember-hifi] URLs must be provided"))
@@ -6708,11 +6714,11 @@ return this.trigger("new-load-request",{loadPromise:i,urlsOrPromise:e,options:t}
 return n.get("soundCache").cache(t)}),i.then(function(e){var t=e.sound
 return n.get("oneAtATime").register(t)}),i.then(function(e){var t=e.sound
 return t.on("audio-played",function(){var e=n.get("currentSound"),r=t
-e!==r&&(e&&Ember.get(e,"isPlaying")&&n.trigger("current-sound-interrupted",e),n.trigger("current-sound-changed",r,e),n.setCurrentSound(t))})}),i},play:function(e,t){var n=this
-this.get("isPlaying")&&(this.trigger("current-sound-interrupted",Ember.get(this,"currentSound")),this.pause()),this.set("isLoading",!0)
-var r=this.load(e,t)
+e!==r&&(e&&Ember.get(e,"isPlaying")&&n.trigger("current-sound-interrupted",e),n.trigger("current-sound-changed",r,e),n.setCurrentSound(t))})}),i},play:function(e){var t=this,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}
+this.get("isPlaying")&&(this.trigger("current-sound-interrupted",Ember.get(this,"currentSound")),this.pause()),this.set("isLoading",!0),this.set("currentMetadata",n.metadata)
+var r=this.load(e,n)
 return new Ember.RSVP.Promise(function(e,i){r.then(function(r){var i=r.sound,o=r.failures
-n.debug("ember-hifi","Finished load, trying to play sound"),i.one("audio-played",function(){return e({sound:i,failures:o})}),n._registerEvents(i),n._attemptToPlaySound(i,t)}),r.catch(i)})},pause:function(){this.get("currentSound").pause()},stop:function(){this.get("currentSound").stop()},togglePause:function(){this.get("isPlaying")?this.get("currentSound").pause():(this.set("isLoading",!0),this.get("currentSound").play())},toggleMute:function(){this.get("isMuted")?this.set("volume",this.get("unmuteVolume")):this.set("volume",0)},fastForward:function(e){this.get("currentSound").fastForward(e)},rewind:function(e){this.get("currentSound").rewind(e)},setCurrentSound:function(e){this.get("isDestroyed")||this.get("isDestroying")||(this._unregisterEvents(this.get("currentSound")),this._registerEvents(e),e._setVolume(this.get("volume")),this.set("currentSound",e),this.debug("ember-hifi","setting current sound -> "+e.get("url")))},_setCurrentPosition:function(){var e=this.get("currentSound")
+t.debug("ember-hifi","Finished load, trying to play sound"),i.one("audio-played",function(){return e({sound:i,failures:o})}),t._registerEvents(i),t._attemptToPlaySound(i,n)}),r.catch(i)})},pause:function(){this.get("currentSound").pause()},stop:function(){this.get("currentSound").stop()},togglePause:function(){this.get("isPlaying")?this.get("currentSound").pause():(this.set("isLoading",!0),this.get("currentSound").play())},toggleMute:function(){this.get("isMuted")?this.set("volume",this.get("unmuteVolume")):this.set("volume",0)},fastForward:function(e){this.get("currentSound").fastForward(e)},rewind:function(e){this.get("currentSound").rewind(e)},setCurrentSound:function(e){this.get("isDestroyed")||this.get("isDestroying")||(this._unregisterEvents(this.get("currentSound")),this._registerEvents(e),e._setVolume(this.get("volume")),this.set("currentSound",e),this.debug("ember-hifi","setting current sound -> "+e.get("url")))},_setCurrentPosition:function(){var e=this.get("currentSound")
 if(e)try{Ember.set(e,"_position",e._currentPosition())}catch(e){}},_registerEvents:function(e){this._unregisterEvents(e)
 e.on("audio-played",this,this._relayPlayedEvent),e.on("audio-paused",this,this._relayPausedEvent),e.on("audio-ended",this,this._relayEndedEvent),e.on("audio-duration-changed",this,this._relayDurationChangedEvent),e.on("audio-position-changed",this,this._relayPositionChangedEvent),e.on("audio-loaded",this,this._relayLoadedEvent),e.on("audio-loading",this,this._relayLoadingEvent),e.on("audio-position-will-change",this,this._relayPositionWillChangeEvent),e.on("audio-will-rewind",this,this._relayWillRewindEvent),e.on("audio-will-fast-forward",this,this._relayWillFastForwardEvent)},_unregisterEvents:function(e){if(e){e.off("audio-played",this,this._relayPlayedEvent),e.off("audio-paused",this,this._relayPausedEvent),e.off("audio-ended",this,this._relayEndedEvent),e.off("audio-duration-changed",this,this._relayDurationChangedEvent),e.off("audio-position-changed",this,this._relayPositionChangedEvent),e.off("audio-loaded",this,this._relayLoadedEvent),e.off("audio-loading",this,this._relayLoadingEvent),e.off("audio-position-will-change",this,this._relayPositionWillChangeEvent),e.off("audio-will-rewind",this,this._relayWillRewindEvent),e.off("audio-will-fast-forward",this,this._relayWillFastForwardEvent)}},_relayEvent:function(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{}
 this.trigger(e,t,n)},_relayPlayedEvent:function(e){this._relayEvent("audio-played",e)},_relayPausedEvent:function(e){this._relayEvent("audio-paused",e)},_relayEndedEvent:function(e){this._relayEvent("audio-ended",e)},_relayDurationChangedEvent:function(e){this._relayEvent("audio-duration-changed",e)},_relayPositionChangedEvent:function(e){this._relayEvent("audio-position-changed",e)},_relayLoadedEvent:function(e){this._relayEvent("audio-loaded",e)},_relayLoadingEvent:function(e){this._relayEvent("audio-loading",e)},_relayPositionWillChangeEvent:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}
