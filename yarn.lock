@@ -2647,8 +2647,8 @@ ember-getowner-polyfill@^2.0.1:
     ember-factory-for-polyfill "^1.3.1"
 
 ember-hifi@^1.11.1:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/ember-hifi/-/ember-hifi-1.14.0.tgz#bcddb138f17b52baf6657d77a2d9bc02c649e89c"
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/ember-hifi/-/ember-hifi-1.14.1.tgz#ca9779001b71b4403edc3d84f3ad2561efeb83a1"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-poll "^1.4.0"
@@ -3937,8 +3937,8 @@ hosted-git-info@^2.1.4, hosted-git-info@^2.5.0:
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.5.0.tgz#6d60e34b3abbc8313062c3b798ef8d901a07af3c"
 
 howler@^2.0.5:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/howler/-/howler-2.0.8.tgz#7eb9128039590fd5f62462ed40882110940a8756"
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/howler/-/howler-2.0.9.tgz#74f08191f857e26dc8a5dc6cba195bd1cdd97e5d"
 
 http-errors@1.6.2, http-errors@~1.6.2:
   version "1.6.2"
