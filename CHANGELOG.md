@@ -1,5 +1,8 @@
 # nypr-player Changelog
 
+## 0.1.2
+- [CHORE] upgrade `ember-hifi`
+
 ## 0.1.1
 - [CHORE] upgrade ember holygrail layout
 
