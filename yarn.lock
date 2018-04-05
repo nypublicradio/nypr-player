@@ -2259,7 +2259,17 @@ ember-basic-dropdown@^0.34.0:
     ember-native-dom-helpers "^0.5.4"
     ember-wormhole "^0.5.2"
 
-ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7:
+ember-burger-menu@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ember-burger-menu/-/ember-burger-menu-3.1.0.tgz#1f7325aca11393d5a7f682e5634cfd94dc4f09b6"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^1.1.1"
+    ember-lifeline "^2.0.0"
+    ember-require-module "^0.2.0"
+    ember-wormhole "0.5.3"
+
+ember-cli-babel@^5.1.6:
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-5.2.4.tgz#5ce4f46b08ed6f6d21e878619fb689719d6e8e13"
   dependencies:
@@ -2269,7 +2279,7 @@ ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7:
     ember-cli-version-checker "^1.0.2"
     resolve "^1.1.2"
 
-ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.1.0, ember-cli-babel@^6.10.0, ember-cli-babel@^6.11.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.2, ember-cli-babel@^6.8.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2:
+ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.1.0, ember-cli-babel@^6.10.0, ember-cli-babel@^6.11.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.2, ember-cli-babel@^6.8.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2, ember-cli-babel@^6.9.2:
   version "6.12.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.12.0.tgz#3adcdbe1278da1fcd0b9038f1360cb4ac5d4414c"
   dependencies:
@@ -2373,7 +2383,7 @@ ember-cli-htmlbars-inline-precompile@^1.0.0:
     heimdalljs-logger "^0.1.7"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@^1.0.10, ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.1.1:
+ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.1.1:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.3.4.tgz#461289724b34af372a6a0c4b6635819156963353"
   dependencies:
@@ -2458,7 +2468,7 @@ ember-cli-qunit@^4.1.1:
     ember-cli-babel "^6.11.0"
     ember-qunit "^3.3.2"
 
-ember-cli-sass@^7.0.0:
+ember-cli-sass@^7.0.0, ember-cli-sass@^7.1.7:
   version "7.1.7"
   resolved "https://registry.yarnpkg.com/ember-cli-sass/-/ember-cli-sass-7.1.7.tgz#66899134788ec8d2406a45f5346d4db47a2aa012"
   dependencies:
@@ -2677,13 +2687,6 @@ ember-hifi@^1.11.1:
     hls.js "^0.8.8"
     howler "^2.0.5"
 
-ember-holygrail-layout@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/ember-holygrail-layout/-/ember-holygrail-layout-0.1.4.tgz#ac7fe907d7aa4376366831d31e9cbe3c5e5a8a00"
-  dependencies:
-    ember-cli-babel "^5.1.6"
-    ember-cli-htmlbars "^1.0.3"
-
 ember-holygrail-layout@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/ember-holygrail-layout/-/ember-holygrail-layout-0.3.0.tgz#6244f5696495fcb8530bacba633d27cf10cbd6e5"
@@ -2691,6 +2694,12 @@ ember-holygrail-layout@^0.3.0:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
     ember-cli-htmlbars-inline-precompile "^1.0.0"
+
+ember-lifeline@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ember-lifeline/-/ember-lifeline-2.0.0.tgz#ab2dadd3eed585605d1c4137c64aacec4d241c8e"
+  dependencies:
+    ember-cli-babel "^6.8.2"
 
 ember-load-initializers@^1.0.0:
   version "1.0.0"
@@ -2766,6 +2775,12 @@ ember-remarkable@^3.6.1:
   dependencies:
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.0.3"
+
+ember-require-module@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-require-module/-/ember-require-module-0.2.0.tgz#eafe436737ead4762220a9166b78364abf754274"
+  dependencies:
+    ember-cli-babel "^6.9.2"
 
 ember-resolver@^4.0.0:
   version "4.5.0"
@@ -2862,6 +2877,13 @@ ember-weakmap@^3.0.0:
     browserslist "^2.2.2"
     debug "^3.1.0"
     ember-cli-babel "^6.3.0"
+
+ember-wormhole@0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/ember-wormhole/-/ember-wormhole-0.5.3.tgz#441fdd7729a3b5eed3b0103db84f0ab880ac7f87"
+  dependencies:
+    ember-cli-babel "^6.8.2"
+    ember-cli-htmlbars "^2.0.1"
 
 ember-wormhole@^0.5.1, ember-wormhole@^0.5.2:
   version "0.5.4"
@@ -4414,12 +4436,12 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-ivy-tabs@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ivy-tabs/-/ivy-tabs-3.1.0.tgz#07eae83bf46c974bf7de2f4d9404a7abaebe39fe"
+ivy-tabs@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/ivy-tabs/-/ivy-tabs-3.3.0.tgz#e29efcba1aaed855e97f5fa4789b1ac7387a32ac"
   dependencies:
-    ember-cli-babel "^5.1.7"
-    ember-cli-htmlbars "^1.0.10"
+    ember-cli-babel "^6.10.0"
+    ember-cli-htmlbars "^2.0.3"
 
 jquery@^3.2.1:
   version "3.3.1"
@@ -5472,20 +5494,21 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nypr-ui@~0.1.0:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/nypr-ui/-/nypr-ui-0.1.8.tgz#2b71a6f5564aa1335efb55811047df9317c2f480"
+nypr-ui@>=0.2.0:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/nypr-ui/-/nypr-ui-0.2.6.tgz#282b712df5fbbc58c643fa93130ba7a79c8cc139"
   dependencies:
     ember-basic-dropdown "0.33.1"
+    ember-burger-menu "^3.1.0"
     ember-cli-babel "^6.8.0"
     ember-cli-htmlbars "^2.0.1"
     ember-cli-htmlbars-inline-precompile "^1.0.0"
-    ember-cli-sass "^7.0.0"
+    ember-cli-sass "^7.1.7"
     ember-click-outside "0.1.11"
     ember-composable-helpers "2.0.3"
-    ember-holygrail-layout "^0.1.4"
+    ember-holygrail-layout "^0.3.0"
     ember-power-select "^1.9.2"
-    ivy-tabs "3.1.0"
+    ivy-tabs "^3.3.0"
     waypoints "^4.0.1"
 
 oauth-sign@~0.8.1, oauth-sign@~0.8.2:
