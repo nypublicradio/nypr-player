@@ -1,22 +1,79 @@
-machine:
-  node:
-    version: 8
-  environment:
-    JOBS: 2
+version: 2
 
-dependencies:
-  override:
-    - yarn --pure-lockfile
-    - yarn global add bower
-    - bower i
+jobs:
+  install:
+    docker:
+      - image: circleci/node:8.7
 
-test:
-  override:
-    - yarn test
+    steps:
+      - checkout
 
-deployment:
-  docs:
-    branch: master
-    commands:
-      - git checkout gh-pages; git checkout master
-      - ./node_modules/ember-cli/bin/ember deploy production
+      - restore_cache:
+          key: node-deps-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install node dependencies
+          command: yarn --pure-lockfile
+      - save_cache:
+          key: node-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+      - restore_cache:
+          key: bower-deps-{{ checksum "bower.json" }}
+      - run:
+          name: Install bower dependencies
+          command: |
+            yarn add bower --pure-lockfile
+            ./node_modules/bower/bin/bower i
+      - save_cache:
+          key: bower-deps-{{ checksum "bower.json" }}
+          paths:
+            - ./bower_components
+
+  test:
+    docker:
+      - image: circleci/node:8.7-browsers
+        environment:
+          JOBS: 2
+
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-deps-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          key: bower-deps-{{ checksum "bower.json" }}
+      - run:
+          name: Test
+          command: yarn test
+
+  deploy:
+    docker:
+      - image: circleci/node:8.7
+        environment:
+          JOBS: 2
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-deps-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          key: bower-deps-{{ checksum "bower.json" }}
+      - run:
+          name: Deploy to GitHub Pages
+          command: |
+            git checkout gh-pages; git checkout master
+            ./node_modules/ember-cli/bin/ember deploy production
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - install
+      - test
+          requires:
+            - install
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
