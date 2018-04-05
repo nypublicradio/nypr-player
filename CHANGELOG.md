@@ -1,4 +1,8 @@
 # nypr-player Changelog
+
+## 0.2.1
+- [CHORE] loosen in house deps
+
 ## 0.2.0
 - [CHORE] upgrade to Ember 3.0 and new module syntax
 
