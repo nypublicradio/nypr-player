@@ -12,6 +12,7 @@
   @include btn;
   @include blank-button;
   @include svg-color($nypr-player-button-color);
+  display: flex;
   height: 100%;
 
   &:hover,
