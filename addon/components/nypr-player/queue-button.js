@@ -7,6 +7,7 @@ export default Component.extend({
   tagName           : 'button',
   classNames        : ['nypr-player-queue-button'],
   classNameBindings : ['isOpenModal:is-open', 'isFloating'],
+  attributeBindings : ['data-category', 'data-action', 'data-label', 'data-value'],
   queueLength       : null,
   showModal         : null,
   closeModal        : null,
