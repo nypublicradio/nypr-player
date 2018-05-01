@@ -12,6 +12,7 @@
   @include btn;
   @include blank-button;
   @include svg-color($nypr-player-button-color);
+  display: flex;
   height: 100%;
 
   &:hover,
@@ -31,11 +32,13 @@
 
 .nypr-player-button.mod-listen {
   position: relative;
+  min-height: 100%;
   width: 48px;
+  height: 48px;
   @include mq($nypr-player-medium-and-up) {
     width: 55px;
+    height: 55px;
   }
-  height:100%;
 
   .listen-button-content {
     pointer-events: none;

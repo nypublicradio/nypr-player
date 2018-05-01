@@ -65,6 +65,7 @@
 
 .nypr-player .ember-holygrail-left .nypr-player-controls {
   justify-content: flex-start;
+  align-items: center;
 
   @include mq($nypr-player-medium-and-up) {
     margin: 0px;
