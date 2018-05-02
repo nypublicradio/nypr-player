@@ -1,5 +1,8 @@
 # nypr-player Changelog
 
+## 0.3.0 beta
+- [FEATURE] analytics upgrade
+
 ## 0.2.2
 - [BIGFIX] fix player controls in iOS10
 
