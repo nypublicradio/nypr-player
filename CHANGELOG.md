@@ -1,5 +1,8 @@
 # nypr-player Changelog
 
+## 0.2.2
+- [BIGFIX] fix player controls in iOS10
+
 ## 0.2.1
 - [CHORE] loosen in house deps
 
