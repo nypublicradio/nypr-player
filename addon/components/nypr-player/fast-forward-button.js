@@ -4,9 +4,8 @@ import layout from '../../templates/components/nypr-player/fast-forward-button';
 export default Component.extend({
   layout,
   tagName: 'button',
-  classNames: ['nypr-player-button', 'mod-fastforward', 'gtm__click-tracking'],
-  attributeBindings: ['aria-text', 'aria-labelledby', 'data-action'],
+  classNames: ['nypr-player-button', 'mod-fastforward'],
+  attributeBindings: ['aria-text', 'aria-labelledby'],
   'aria-text': "skip forward 15 seconds",
   'aria-labelledby': 'fastforward-label',
-  'data-action': 'Skip Forward'
 });
