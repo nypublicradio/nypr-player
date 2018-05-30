@@ -273,7 +273,7 @@ workflows:
       - install:
           filters:
             branches:
-              only: qa-build
+              only: master
       - test:
           requires:
             - install
