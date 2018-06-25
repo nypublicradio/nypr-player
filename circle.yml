@@ -1,68 +1,258 @@
 version: 2
 
+attach: &attach
+  attach_workspace:
+    at: /home/circleci
+
+register_nypr_player: &register_nypr_player
+  run:
+    name: make global symlink
+    command: cd /home/circleci/nypr-player && yarn link
+
+restore_node: &restore_node
+  restore_cache:
+    key: node-deps-{{ arch }}-{{ checksum "yarn.lock" }}
+
+install_node: &install_node
+  run:
+    name: node deps
+    command: |
+      if [ ! -d node_modules ]; then
+        yarn --pure-lockfile
+      fi
+
+save_node: &save_node
+  save_cache:
+    key: node-deps-{{ arch }}-{{ checksum "yarn.lock" }}
+    paths:
+      - node_modules
+
+restore_bower: &restore_bower
+  restore_cache:
+    key: bower-deps-{{ arch }}-{{ checksum "bower.json" }}
+
+install_bower: &install_bower
+  run:
+    name: bower deps
+    command: |
+      if [ ! -d bower_components ]; then
+        npx bower i
+      fi
+
+save_bower: &save_bower
+  save_cache:
+    key: bower-deps-{{ arch }}-{{ checksum "bower.json" }}
+    paths:
+      - bower_components
+
+build_modernizr: &build_modernizr
+  run:
+    name: Build modernizr
+    command: npx grunt modernizr:dist
+
+run_client_tests: &run_client_tests
+  run:
+    name: link and test
+    command: |
+      yarn link nypr-player
+      npx ember test
+
+container_defaults: &defaults
+  docker:
+    - image: circleci/node:8.7-browsers
+      environment:
+        JOBS: 2
+
+
 jobs:
   install:
-    docker:
-      - image: circleci/node:8.7
-
+    <<: *defaults
+    working_directory: /home/circleci/nypr-player
     steps:
       - checkout
 
-      - restore_cache:
-          key: v2-node8-yarn-deps-{{ arch }}-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install node dependencies
-          command: |
-            if [ ! -d ./node_modules ]; then
-              yarn --pure-lockfile
-            fi
-      - save_cache:
-          key: v2-node8-yarn-deps-{{ arch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ./node_modules
+      - <<: *restore_node
+      - <<: *install_node
+      - <<: *save_node
 
-      - restore_cache:
-          key: bower-deps-{{ checksum "bower.json" }}
-      - run:
-          name: Install bower dependencies
-          command: |
-            yarn global add bower
-            npx bower i
-      - save_cache:
-          key: bower-deps-{{ checksum "bower.json" }}
+      - <<: *restore_bower
+      - <<: *install_bower
+      - <<: *save_bower
+
+      - persist_to_workspace:
+          root: /home/circleci
           paths:
-            - ./bower_components
+            - nypr-player
 
   test:
-    docker:
-      - image: circleci/node:8.7-browsers
-        environment:
-          JOBS: 2
+    <<: *defaults
+    working_directory: /home/circleci/nypr-player
+    environment:
+      CIRCLE_TEST_REPORTS: test-results
 
     steps:
       - checkout
-      - restore_cache:
-          key: v2-node8-yarn-deps-{{ arch }}-{{ checksum "yarn.lock" }}
-      - restore_cache:
-          key: bower-deps-{{ checksum "bower.json" }}
+      - <<: *restore_node
+      - <<: *restore_bower
+
       - run:
-          name: Test
-          command: npx ember test
+          name: Run addon tests
+          command: |
+            sudo yarn global add greenkeeper-lockfile@1
+            greenkeeper-lockfile-update
+            npx ember test
+            greenkeeper-lockfile-upload
+
+      - store_test_results:
+          path: test-results/
+
+  setup_test_clients:
+    docker:
+      - image: circleci/buildpack-deps:jessie
+    working_directory: /home/circleci
+    steps:
+      - run:
+          name: Keyscan Github
+          command: |
+            mkdir ~/.ssh
+            ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+      - run:
+          name: clone clients
+          command: |
+            for client in wnyc wqxr new-sounds wnyc-studios; do
+              git clone git@github.com:nypublicradio/$client-web-client
+            done
+      - persist_to_workspace:
+          root: .
+          paths:
+            - wnyc-web-client
+            - wqxr-web-client
+            - new-sounds-web-client
+            - wnyc-studios-web-client
+
+  test_wnyc:
+    <<: *defaults
+    working_directory: /home/circleci/wnyc-web-client
+    environment:
+      CIRCLE_TEST_REPORTS: wnyc-test-results
+
+    steps:
+      - <<: *attach
+      - <<: *register_nypr_player
+
+      - <<: *restore_node
+      - <<: *install_node
+      - <<: *save_node
+
+      - <<: *restore_bower
+      - <<: *install_bower
+      - <<: *save_bower
+
+      - <<: *build_modernizr
+
+      - <<: *run_client_tests
+
+      - store_test_results:
+          path: wnyc-test-results/
+
+  test_wqxr:
+    <<: *defaults
+    working_directory: /home/circleci/wqxr-web-client
+    environment:
+      CIRCLE_TEST_REPORTS: wqxr-test-results
+
+    steps:
+      - <<: *attach
+      - <<: *register_nypr_player
+
+      - <<: *restore_node
+      - <<: *install_node
+      - <<: *save_node
+
+      - <<: *restore_bower
+      - <<: *install_bower
+      - <<: *save_bower
+
+      - <<: *build_modernizr
+
+      - <<: *run_client_tests
+
+      - store_test_results:
+          path: wqxr-test-results/
+
+  test_new_sounds:
+    <<: *defaults
+    working_directory: /home/circleci/new-sounds-web-client
+    environment:
+      CIRCLE_TEST_REPORTS: new-sounds-test-results
+
+    steps:
+      - <<: *attach
+      - <<: *register_nypr_player
+
+      - <<: *restore_node
+      - <<: *install_node
+      - <<: *save_node
+
+      - <<: *run_client_tests
+
+      - store_test_results:
+          path: new-sounds-test-results/
+
+  test_wnyc_studios_ember:
+    <<: *defaults
+    parallelism: 4
+    working_directory: /home/circleci/wnyc-studios-web-client
+    environment:
+      CIRCLE_TEST_REPORTS: wnyc-studios-test-results
+
+    steps:
+      - <<: *attach
+      - <<: *register_nypr_player
+
+      - <<: *restore_node
+      - <<: *install_node
+      - <<: *save_node
+
+      - <<: *build_modernizr
+
+      - run: |
+          cp .env.sample .env
+          npx ember exam --split=$CIRCLE_NODE_TOTAL --partition=$(($CIRCLE_NODE_INDEX + 1))
+
+      - store_test_results:
+          path: wnyc-studios-test-results/
+
+  test_wnyc_studios_cypress:
+    <<: *defaults
+    parallelism: 4
+    working_directory: /home/circleci/wnyc-studios-web-client
+    environment:
+      CIRCLE_TEST_REPORTS: wnyc-studios-test-results
+
+    steps:
+      - <<: *attach
+      - <<: *register_nypr_player
+
+      - <<: *restore_node
+      - <<: *install_node
+      - <<: *save_node
+
+      - <<: *build_modernizr
+
+      - run: |
+          cp .env.sample .env
+          sudo apt-get install libgconf-2-4
+          yarn run cy:ci:test
+
+      - store_test_results:
+          path: wnyc-studios-test-results/
 
   deploy:
-    docker:
-      - image: circleci/node:8.7
-        environment:
-          JOBS: 2
+    <<: *defaults
+    working_directory: /home/circleci/nypr-player
     steps:
-      - checkout
-      - restore_cache:
-          key: v2-node8-yarn-deps-{{ arch }}-{{ checksum "yarn.lock" }}
-      - restore_cache:
-          key: bower-deps-{{ checksum "bower.json" }}
-      - add_ssh_keys:
-          fingerprints:
-            - "f2:81:ef:9b:72:28:c3:c9:fe:4e:8b:57:e4:ef:3e:cc"
+      - <<: *attach
       - run:
           name: Deploy to GitHub Pages
           command: |
@@ -72,15 +262,44 @@ jobs:
 
 workflows:
   version: 2
-  test-and-deploy:
+  just-test:
     jobs:
       - install
       - test:
           requires:
             - install
-      - deploy:
-          requires:
-            - test
+  test-and-deploy:
+    jobs:
+      - install:
           filters:
             branches:
               only: master
+      - test:
+          requires:
+            - install
+      - setup_test_clients:
+          requires:
+            - install
+      - test_wnyc:
+          requires:
+            - setup_test_clients
+      - test_wqxr:
+          requires:
+            - setup_test_clients
+      - test_wnyc_studios_ember:
+          requires:
+            - setup_test_clients
+      - test_wnyc_studios_cypress:
+          requires:
+            - setup_test_clients
+      - test_new_sounds:
+          requires:
+            - setup_test_clients
+      - deploy:
+          requires:
+            - test
+            - test_wnyc
+            - test_wqxr
+            - test_wnyc_studios_ember
+            - test_wnyc_studios_cypress
+            - test_new_sounds
