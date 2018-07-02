@@ -10,11 +10,12 @@ export default Component.extend({
   disabled            : not('ready'),
   'aria-label'        : readOnly('title'),
   'data-test-selector': 'listen-button',
+  'data-action'       : 'Play/Pause',
 
   tagName             : 'button',
-  classNames          : ['nypr-player-button', 'mod-listen'],
+  classNames          : ['nypr-player-button', 'mod-listen', 'gtm__click-tracking'],
   classNameBindings   : ['isHovering', 'playState'],
-  attributeBindings   : ['aria-label', 'title', 'disabled', 'data-test-selector'],
+  attributeBindings   : ['aria-label', 'title', 'disabled', 'data-test-selector', 'data-action'],
 
   title               : computed('currentTitle', function() {
     if (this.get('currentTitle')) {
