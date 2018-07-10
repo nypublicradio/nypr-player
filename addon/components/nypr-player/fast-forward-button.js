@@ -8,5 +8,5 @@ export default Component.extend({
   attributeBindings: ['aria-text', 'aria-labelledby', 'data-action'],
   'aria-text': "skip forward 15 seconds",
   'aria-labelledby': 'fastforward-label',
-  'data-action': 'Skip Forward'
+  'data-action': 'Clicked Skip Forward: persistent-player'
 });
