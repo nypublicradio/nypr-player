@@ -8,5 +8,5 @@ export default Component.extend({
   attributeBindings: ['aria-text', 'aria-labelled-by', 'data-action'],
   'aria-text': "rewind 15 seconds",
   'aria-labelled-by': "rewind-label",
-  'data-action': "Skip Backward"
+  'data-action': 'Clicked Skip Backward: persistent-player'
 });

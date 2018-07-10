@@ -10,7 +10,9 @@ export default Component.extend({
   disabled            : not('ready'),
   'aria-label'        : readOnly('title'),
   'data-test-selector': 'listen-button',
-  'data-action'       : 'Play/Pause',
+  'data-action'       : computed('hifi.isStream', function() {
+    return `Clicked Play/Pause ${this.get('hifi.isStream') ? 'Stream' : 'On Demand'}: persistent-player`
+  }),
 
   tagName             : 'button',
   classNames          : ['nypr-player-button', 'mod-listen', 'gtm__click-tracking'],
