@@ -1,5 +1,8 @@
 # nypr-player Changelog
 
+## 0.2.3
+- [BUGFIX] update styles to fix NewSounds Safari 10 player issue. see https://jira.wnyc.org/browse/RT-906 and https://github.com/nypublicradio/nypr-player/tree/bscharenberg/RT-906
+
 ## 0.2.2
 - [BIGFIX] fix player controls in iOS10
 
