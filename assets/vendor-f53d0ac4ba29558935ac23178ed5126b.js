@@ -6653,7 +6653,7 @@ n.forEach(function(n){Ember.$(e).on(n,function(e){return Ember.run(function(){re
 break
 case"canplay":case"canplaythrough":this._onAudioReady()
 break
-case"error":this._onAudioError(t)
+case"error":this._onAudioError(t.target.error)
 break
 case"playing":this._onAudioPlayed()
 break
@@ -6674,20 +6674,20 @@ this.set("_audioElement",t),t.preload="none",t.src=e.src
 try{t.currentTime=e.currentTime}catch(e){this.debug("Errored while trying to save audio current time"),this.debug(e)}t.volume=e.volume,this.debug("Saved audio state")},requestControl:function(){return this.get("sharedAudioAccess")?this.get("sharedAudioAccess").requestControl(this):this.audioElement()},restoreState:function(){var e=this.audioElement(),t=this.get("_audioElement")
 if(this.get("sharedAudioAccess")&&t){this.debug("Restoring audio state…")
 try{t.currentTime&&(e.currentTime=t.currentTime),t.volume&&(e.volume=t.volume),this.debug("Restored audio state")}catch(e){this.debug("Errored while trying to restore audio state"),this.debug(e)}}},_onAudioProgress:function(){this.trigger("audio-loading",this._calculatePercentLoaded())},_onAudioDurationChanged:function(){this.trigger("audio-duration-changed",this)},_onAudioPlayed:function(){this.get("isPlaying")||this.trigger("audio-played",this)},_onAudioEnded:function(){this.trigger("audio-ended",this)},_onAudioError:function(e){var t=""
-switch(e.target.error.code){case e.target.error.MEDIA_ERR_ABORTED:t="You aborted the audio playback."
+switch(e.code){case e.MEDIA_ERR_ABORTED:t="You aborted the audio playback."
 break
-case e.target.error.MEDIA_ERR_NETWORK:t="A network error caused the audio download to fail."
+case e.MEDIA_ERR_NETWORK:t="A network error caused the audio download to fail."
 break
-case e.target.error.MEDIA_ERR_DECODE:t="Decoder error."
+case e.MEDIA_ERR_DECODE:t="Decoder error."
 break
-case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:t="Audio source format is not supported."
+case e.MEDIA_ERR_SRC_NOT_SUPPORTED:t="Audio source format is not supported."
 break
 default:t="unknown error."}this.debug("audio element threw error "+t),this.trigger("audio-load-error",t)},_onAudioEmptied:function(){this.get("isStream")&&this.trigger("audio-paused",this)},_onAudioPaused:function(){this.trigger("audio-paused",this)},_onAudioReady:function(){this.trigger("audio-ready",this),this.trigger("audio-loaded",this)},_calculatePercentLoaded:function(){var e=this.audioElement()
 if(e&&e.buffered&&e.buffered.length){for(var t=e.buffered,n=[],r=0;r<t.length;r++)n.push(t.end(r)-t.start(r))
 var i=Ember.A(n).reduce(function(e,t){return e+t},0)
 return this.debug("ms loaded: "+1e3*i),this.debug("duration: "+this._audioDuration()),this.debug("percent loaded = "+i/e.duration*100),{percentLoaded:i/e.duration}}return 0},_audioDuration:function(){var e=this.audioElement()
-return e.duration>1728e5?1/0:1e3*e.duration},_currentPosition:function(){return 1e3*this.audioElement().currentTime},_setPosition:function(e){return this.audioElement().currentTime=e/1e3,this._currentPosition()},_setVolume:function(e){this.audioElement().volume=e/100},play:function(){var e=(arguments.length>0&&void 0!==arguments[0]?arguments[0]:{}).position,t=this.requestControl()
-this.loadAudio(t),this.restoreState(),void 0!==e&&this._setPosition(e),this.debug("telling audio to play"),t.play()},pause:function(){var e=this.audioElement()
+return e.duration>1728e5?1/0:1e3*e.duration},_currentPosition:function(){return 1e3*this.audioElement().currentTime},_setPosition:function(e){return this.audioElement().currentTime=e/1e3,this._currentPosition()},_setVolume:function(e){this.audioElement().volume=e/100},play:function(){var e=this,t=(arguments.length>0&&void 0!==arguments[0]?arguments[0]:{}).position,n=this.requestControl()
+return this.loadAudio(n),this.restoreState(),void 0!==t&&this._setPosition(t),this.debug("telling audio to play"),n.play().catch(function(t){return e._onAudioError(t)})},pause:function(){var e=this.audioElement()
 this.get("isStream")?this.stop():e.pause()},stop:function(){var e=this.audioElement()
 e.pause(),e.removeAttribute("src"),e.load()},loadAudio:function(e){this.urlsAreEqual(e.src,this.get("url"))||e.setAttribute("src",this.get("url"))},urlsAreEqual:function(e,t){var n=document.createElement("a"),r=document.createElement("a")
 return n.href=e,r.href=t,n.href===r.href},willDestroy:function(){var e=this.requestControl()
@@ -6708,6 +6708,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=Ember.Service.extend(
 n.registerOptionsForType("ember-hifi@hifi-connection",{instantiate:!1}),n.registerOptionsForType("hifi-connection",{instantiate:!1}),Ember.set(this,"alwaysUseSingleAudioElement",Ember.getWithDefault(this,"options.emberHifi.alwaysUseSingleAudioElement",!1)),Ember.set(this,"appEnvironment",Ember.getWithDefault(this,"options.environment","development")),Ember.set(this,"_connections",{}),Ember.set(this,"oneAtATime",t.default.create()),Ember.set(this,"volume",50),this._activateConnections(e),this.set("isReady",!0),this.get("poll").addPoll({interval:Ember.get(this,"pollInterval")||500,callback:Ember.run.bind(this,this._setCurrentPosition)}),this._super.apply(this,arguments)},availableConnections:function(){return Object.keys(this.get("_connections"))},load:function(e,t){var n=this,r=this._createAndUnlockAudio()
 t=Ember.assign({debugName:"load-"+Math.random().toString(36).replace(/[^a-z]+/g,"").substr(0,3),metadata:{}},t)
 var i=new Ember.RSVP.Promise(function(i,o){return n._resolveUrls(e).then(function(e){if(Ember.isEmpty(e))return o(new Error("[ember-hifi] URLs must be provided"))
+n.trigger("pre-load",e)
 var a=n.get("soundCache").find(e)
 if(a)return n.debug("ember-hifi","retreived sound from cache"),i({sound:a})
 var s=[]
@@ -6715,9 +6716,9 @@ if(t.useConnections){var l=t.useConnections
 s=n._prepareStrategies(e,l)}else s=n.get("isMobileDevice")?n._prepareMobileStrategies(e):n._prepareStandardStrategies(e)
 n.get("useSharedAudioAccess")&&(s=s.map(function(e){return e.sharedAudioAccess=r,e}))
 var c=n._findFirstPlayableSound(s,t)
-return c.then(function(e){return i({sound:e.success,failures:e.failures})}),c}).catch(function(e){n.set("isLoading",!1)
+return c.then(function(e){return i({sound:e.success,failures:e.failures})}),c.catch(function(e){n.set("isLoading",!1)
 var t=new Error("[ember-hifi] URL Promise failed because: "+e.message)
-t.failures=e.failures,o(t)})})
+t.failures=e.failures,o(t)}),c})})
 return this.trigger("new-load-request",{loadPromise:i,urlsOrPromise:e,options:t}),i.then(function(e){return e.sound.set("metadata",t.metadata)}),i.then(function(e){var t=e.sound
 return n.get("soundCache").cache(t)}),i.then(function(e){var t=e.sound
 return n.get("oneAtATime").register(t)}),i.then(function(e){var t=e.sound
