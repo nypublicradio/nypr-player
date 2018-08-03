@@ -2646,6 +2646,13 @@ ember-concurrency@^0.8.12:
     ember-cli-babel "^6.8.2"
     ember-maybe-import-regenerator "^0.1.5"
 
+ember-cookies@^0.3.0:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-cookies/-/ember-cookies-0.3.1.tgz#42ca530703092f6cde691103d608a6a5a58f2d76"
+  dependencies:
+    ember-cli-babel "^6.8.2"
+    ember-getowner-polyfill "^1.1.0 || ^2.0.0"
+
 ember-disable-prototype-extensions@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/ember-disable-prototype-extensions/-/ember-disable-prototype-extensions-1.1.3.tgz#1969135217654b5e278f9fe2d9d4e49b5720329e"
@@ -2662,7 +2669,7 @@ ember-factory-for-polyfill@^1.3.1:
   dependencies:
     ember-cli-version-checker "^2.1.0"
 
-ember-getowner-polyfill@^2.0.1:
+"ember-getowner-polyfill@^1.1.0 || ^2.0.0", ember-getowner-polyfill@^2.0.1:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-2.2.0.tgz#38e7dccbcac69d5ec694000329ec0b2be651d2b2"
   dependencies:
@@ -5485,9 +5492,9 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nypr-ui@>=0.3.0-beta.1:
-  version "0.3.0-beta.1"
-  resolved "https://registry.yarnpkg.com/nypr-ui/-/nypr-ui-0.3.0-beta.1.tgz#0dcc75912b6b5ae0c078237afe6d5e2bb4c31dbc"
+nypr-ui@>=0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/nypr-ui/-/nypr-ui-0.3.0.tgz#76e4eb992ef28ab24d29ca8314f0fad7d8134af4"
   dependencies:
     ember-basic-dropdown "0.34.0"
     ember-burger-menu "^3.1.0"
@@ -5497,6 +5504,7 @@ nypr-ui@>=0.3.0-beta.1:
     ember-cli-sass "^7.1.7"
     ember-click-outside "0.1.11"
     ember-composable-helpers "2.0.3"
+    ember-cookies "^0.3.0"
     ember-holygrail-layout "^0.3.0"
     ember-power-select "^1.9.2"
     ivy-tabs "^3.3.0"
