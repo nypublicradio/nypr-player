@@ -1,6 +1,6 @@
 {
   "name": "nypr-player",
-  "version": "0.3.0-beta.7",
+  "version": "0.3.0",
   "description": "The audio player UI for NYPR stations.",
   "keywords": [
     "ember-addon"
