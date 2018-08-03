@@ -1,6 +1,6 @@
 {
   "name": "nypr-player",
-  "version": "0.2.3",
+  "version": "0.3.0-beta.7",
   "description": "The audio player UI for NYPR stations.",
   "keywords": [
     "ember-addon"
@@ -26,7 +26,7 @@
     "ember-cli-sass": "^7.0.0",
     "ember-hifi": "^1.15.1",
     "ember-moment": "^7.4.1",
-    "nypr-ui": ">=0.2.0"
+    "nypr-ui": ">=0.3.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

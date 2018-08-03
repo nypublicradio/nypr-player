@@ -267,6 +267,10 @@
   display: flex;
   height: 100%;
 
+  > * {
+    pointer-events: none;
+  }
+
   &.is-floating {
     top: 15px;
     margin-right: 0;
@@ -277,6 +281,7 @@
     transition: color $nypr-player-transition-timing ease-in-out;
 
     .nypr-player-queue-icon {
+
       &.mod-close {
         width: 16px;
         height: 16px;

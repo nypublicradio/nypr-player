@@ -2241,16 +2241,7 @@ electron-to-chromium@^1.3.30:
   version "1.3.34"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.34.tgz#d93498f40391bb0c16a603d8241b9951404157ed"
 
-ember-basic-dropdown@0.33.1:
-  version "0.33.1"
-  resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-0.33.1.tgz#8eab4181618d32edd88e1c90835d2a8791f09064"
-  dependencies:
-    ember-cli-babel "^6.6.0"
-    ember-cli-htmlbars "^1.1.1"
-    ember-native-dom-helpers "^0.5.0"
-    ember-wormhole "^0.5.1"
-
-ember-basic-dropdown@^0.34.0:
+ember-basic-dropdown@0.34.0, ember-basic-dropdown@^0.34.0:
   version "0.34.0"
   resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-0.34.0.tgz#a0371b7c06756cdd3170e7d4a9ed4f4890bc2d59"
   dependencies:
@@ -2655,6 +2646,13 @@ ember-concurrency@^0.8.12:
     ember-cli-babel "^6.8.2"
     ember-maybe-import-regenerator "^0.1.5"
 
+ember-cookies@^0.3.0:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-cookies/-/ember-cookies-0.3.1.tgz#42ca530703092f6cde691103d608a6a5a58f2d76"
+  dependencies:
+    ember-cli-babel "^6.8.2"
+    ember-getowner-polyfill "^1.1.0 || ^2.0.0"
+
 ember-disable-prototype-extensions@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/ember-disable-prototype-extensions/-/ember-disable-prototype-extensions-1.1.3.tgz#1969135217654b5e278f9fe2d9d4e49b5720329e"
@@ -2671,7 +2669,7 @@ ember-factory-for-polyfill@^1.3.1:
   dependencies:
     ember-cli-version-checker "^2.1.0"
 
-ember-getowner-polyfill@^2.0.1:
+"ember-getowner-polyfill@^1.1.0 || ^2.0.0", ember-getowner-polyfill@^2.0.1:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-2.2.0.tgz#38e7dccbcac69d5ec694000329ec0b2be651d2b2"
   dependencies:
@@ -2733,7 +2731,7 @@ ember-moment@^7.4.1:
     ember-getowner-polyfill "^2.0.1"
     ember-macro-helpers "^0.17.0"
 
-ember-native-dom-helpers@^0.5.0, ember-native-dom-helpers@^0.5.4:
+ember-native-dom-helpers@^0.5.4:
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/ember-native-dom-helpers/-/ember-native-dom-helpers-0.5.10.tgz#9c7172e4ddfa5dd86830c46a936e2f8eca3e5896"
   dependencies:
@@ -2885,7 +2883,7 @@ ember-wormhole@0.5.3:
     ember-cli-babel "^6.8.2"
     ember-cli-htmlbars "^2.0.1"
 
-ember-wormhole@^0.5.1, ember-wormhole@^0.5.2:
+ember-wormhole@^0.5.2:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/ember-wormhole/-/ember-wormhole-0.5.4.tgz#968e80f093494f4aed266e750afa63919c61383d"
   dependencies:
@@ -5494,11 +5492,11 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nypr-ui@>=0.2.0:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/nypr-ui/-/nypr-ui-0.2.6.tgz#282b712df5fbbc58c643fa93130ba7a79c8cc139"
+nypr-ui@>=0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/nypr-ui/-/nypr-ui-0.3.0.tgz#76e4eb992ef28ab24d29ca8314f0fad7d8134af4"
   dependencies:
-    ember-basic-dropdown "0.33.1"
+    ember-basic-dropdown "0.34.0"
     ember-burger-menu "^3.1.0"
     ember-cli-babel "^6.8.0"
     ember-cli-htmlbars "^2.0.1"
@@ -5506,6 +5504,7 @@ nypr-ui@>=0.2.0:
     ember-cli-sass "^7.1.7"
     ember-click-outside "0.1.11"
     ember-composable-helpers "2.0.3"
+    ember-cookies "^0.3.0"
     ember-holygrail-layout "^0.3.0"
     ember-power-select "^1.9.2"
     ivy-tabs "^3.3.0"

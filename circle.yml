@@ -9,9 +9,12 @@ register_nypr_player: &register_nypr_player
     name: make global symlink
     command: cd /home/circleci/nypr-player && yarn link
 
+node_key: &node_key
+  key: node-deps-{{ arch }}-{{ checksum "yarn.lock" }}
+
 restore_node: &restore_node
   restore_cache:
-    key: node-deps-{{ arch }}-{{ checksum "yarn.lock" }}
+    <<: *node_key
 
 install_node: &install_node
   run:
@@ -23,7 +26,7 @@ install_node: &install_node
 
 save_node: &save_node
   save_cache:
-    key: node-deps-{{ arch }}-{{ checksum "yarn.lock" }}
+    <<: *node_key
     paths:
       - node_modules
 
@@ -144,10 +147,6 @@ jobs:
       - <<: *install_node
       - <<: *save_node
 
-      - <<: *restore_bower
-      - <<: *install_bower
-      - <<: *save_bower
-
       - <<: *build_modernizr
 
       - <<: *run_client_tests
@@ -168,10 +167,6 @@ jobs:
       - <<: *restore_node
       - <<: *install_node
       - <<: *save_node
-
-      - <<: *restore_bower
-      - <<: *install_bower
-      - <<: *save_bower
 
       - <<: *build_modernizr
 
@@ -269,10 +264,14 @@ workflows:
   version: 2
   just-test:
     jobs:
-      - install
+      - install:
+          filters:
+            branches:
+              ignore: master
       - test:
           requires:
             - install
+
   test-and-deploy:
     jobs:
       - install:
