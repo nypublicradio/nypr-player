@@ -5492,9 +5492,9 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nypr-ui@>=0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/nypr-ui/-/nypr-ui-0.3.0.tgz#76e4eb992ef28ab24d29ca8314f0fad7d8134af4"
+nypr-ui@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/nypr-ui/-/nypr-ui-0.4.0.tgz#d563595f7c43c88548aed881d966bbb8cf780361"
   dependencies:
     ember-basic-dropdown "0.34.0"
     ember-burger-menu "^3.1.0"

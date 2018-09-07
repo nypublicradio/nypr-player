@@ -4,6 +4,9 @@ import { helper } from '@ember/component/helper';
 // https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html#//apple_ref/doc/uid/TP40009523-CH5-SW11
 
 export function canChangeVolume() {
+  if (typeof document === 'undefined') {
+    return false;
+  }
   let audio = document.createElement('audio');
   if (audio.volume !== undefined) {
     audio.volume = 0.99; //arbitrary value
