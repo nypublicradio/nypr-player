@@ -1,5 +1,8 @@
 # nypr-player Changelog
 
+## 0.4.0
+- [ENHANCEMENT] Fastboot compatibility
+
 ## 0.3.0
 - [FEATURE] analytics upgrade
 
