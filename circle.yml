@@ -10,7 +10,7 @@ register_nypr_player: &register_nypr_player
     command: cd /home/circleci/nypr-player && yarn link
 
 node_key: &node_key
-  key: node-deps-{{ arch }}-{{ checksum "yarn.lock" }}
+  key: node-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum "circle.yml" }}
 
 restore_node: &restore_node
   restore_cache:
@@ -29,6 +29,7 @@ save_node: &save_node
     <<: *node_key
     paths:
       - node_modules
+      - /home/circleci/.cache/Cypress
 
 restore_bower: &restore_bower
   restore_cache:
