@@ -1,5 +1,8 @@
 # nypr-player Changelog
 
+## 0.4.2
+- [BUGFIX] Update Circle config so Cypress tests pass
+
 ## 0.4.1
 - [ENHANCEMENT] Use more accessible nypr-ui ^0.5.0
 
