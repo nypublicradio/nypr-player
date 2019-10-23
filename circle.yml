@@ -30,6 +30,7 @@ save_node: &save_node
     paths:
       - node_modules
       - /home/circleci/.cache/Cypress
+      - ../codeclimate
 
 restore_bower: &restore_bower
   restore_cache:
@@ -77,6 +78,12 @@ jobs:
 
       - <<: *restore_node
       - <<: *install_node
+      - run:
+          name: Install CodeClimate
+          command: |
+            mkdir -p ../codeclimate
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ../codeclimate/cc-test-reporter
+            chmod +x ../codeclimate/cc-test-reporter
       - <<: *save_node
 
       - <<: *restore_bower
@@ -98,14 +105,16 @@ jobs:
       - checkout
       - <<: *restore_node
       - <<: *restore_bower
-
+      - run:
+          name: Set up CodeClimate
+          command: ../codeclimate/cc-test-reporter before-build
       - run:
           name: Run addon tests
           command: |
-            sudo yarn global add greenkeeper-lockfile@1
-            greenkeeper-lockfile-update
             npx ember test
-            greenkeeper-lockfile-upload
+      - run:
+          name: Upload CodeClimate test results
+          command: ../codeclimate/cc-test-reporter after-build --exit-code $?
 
       - store_test_results:
           path: test-results/
