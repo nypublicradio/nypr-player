@@ -100,6 +100,7 @@ jobs:
     working_directory: /home/circleci/nypr-player
     environment:
       CIRCLE_TEST_REPORTS: test-results
+      COVERAGE: true
 
     steps:
       - checkout
