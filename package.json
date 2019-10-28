@@ -46,7 +46,7 @@
     "ember-code-snippet": "^2.0.0",
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
-    "ember-holygrail-layout": "^0.3.0",
+    "ember-holygrail-layout": "^0.3.1",
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-remarkable": "^3.6.1",

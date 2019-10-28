@@ -50,7 +50,7 @@
           isMuted    = hifi.isMuted}}
       {{/if}}
 
-      {{yield (hash for=(component 'content-for' yieldName='aux' yieldArguments=(hash queueButton=(component 'nypr-player.queue-button'))))}}
+      {{yield (hash for=(component 'content-for' yieldName='aux' yieldArguments=(hash queueButton=(component 'nypr-player/queue-button'))))}}
     </div>
   {{/g.right}}
 {{/holygrail-layout}}
