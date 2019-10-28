@@ -1,5 +1,8 @@
 # nypr-player Changelog
 
+## 0.4.3
+- [BUGFIX] Update component invocation (from `(component 'nypr-player.queue-button')` to `(component 'nypr-player/queue-button')` and referenced version of `ember-holygrail-layout` so this addon works in newer ember versions.
+
 ## 0.4.2
 - [BUGFIX] Update Circle config so Cypress tests pass
 
