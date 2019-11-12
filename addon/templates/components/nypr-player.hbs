@@ -3,26 +3,26 @@
 {{#holygrail-layout as |g|}}
   {{#g.left}}
     <div class="nypr-player-controls">
-      {{nypr-player/rewind-button click=(action 'rewind')}}
+      {{nypr-player/rewind-button click=(action "rewind")}}
       {{nypr-player/listen-button
         playState    = playState
         currentTitle = currentTitle
-        click        = (action 'playOrPause')
+        click        = (action "playOrPause")
         ready        = isReady
       }}
-      {{nypr-player/fast-forward-button click=(action 'fastForward')}}
+      {{nypr-player/fast-forward-button click=(action "fastForward")}}
     </div>
   {{/g.left}}
 
   {{#g.center}}
     <div class="nypr-player-info">
       <div class="nypr-player-track-info">
-        {{yield (hash for=(component 'content-for' yieldName='trackInfo'))}}
+        {{yield (hash for=(component "content-for" yieldName="trackInfo"))}}
       </div>
 
       {{#if isAudiostream}}
         <div class="nypr-player-stream-info">
-          {{yield (hash for=(component 'content-for' yieldName='streamInfo'))}}
+          {{yield (hash for=(component "content-for" yieldName="streamInfo"))}}
         </div>
       {{else}}
         <div class="nypr-player-progress-container">
@@ -30,7 +30,7 @@
             downloaded  = hifi.percentLoaded
             position    = hifi.position
             duration    = hifi.duration
-            setPosition = (action 'setPosition')}}
+            setPosition = (action "setPosition")}}
 
           {{nypr-player/time-label
             position = hifi.position
@@ -45,12 +45,12 @@
       {{#if (can-change-volume)}}
         {{nypr-player/volume-control
           volume     = hifi.volume
-          setVolume  = (action 'setVolume')
-          toggleMute = (action 'toggleMute')
+          setVolume  = (action "setVolume")
+          toggleMute = (action "toggleMute")
           isMuted    = hifi.isMuted}}
       {{/if}}
 
-      {{yield (hash for=(component 'content-for' yieldName='aux' yieldArguments=(hash queueButton=(component 'nypr-player/queue-button'))))}}
+      {{yield (hash for=(component "content-for" yieldName="aux" yieldArguments=(hash queueButton=(component "nypr-player/queue-button"))))}}
     </div>
   {{/g.right}}
 {{/holygrail-layout}}

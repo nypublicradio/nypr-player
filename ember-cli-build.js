@@ -7,8 +7,17 @@ module.exports = function(defaults) {
     // Add options here
     snippetSearchPaths: ['app', 'tests/dummy/app', 'addon'],
     sassOptions: {
-       extension: 'scss'
-     }
+      extension: 'scss'
+    },
+
+    // todo: figure out how to auto include these paths from nypr-icons addon?
+    svgJar: {
+      sourceDirs: [
+        'public',
+        'tests/dummy/public/assets/images/',
+        'node_modules/nypr-icons/public',
+      ],
+    }
   });
 
   /*

@@ -10,7 +10,46 @@
 
 .nypr-player-button {
   @include btn;
-  @include blank-button;
+
+  appearance: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: #333;
+  // IE doesn't support initial
+  color: initial;
+  text-align: left;
+  background-color: transparent;
+
+  transition:
+    opacity $transition-timing,
+    background-color $transition-timing,
+    border-color $transition-timing,
+    color $transition-timing;
+
+
+  &:not([disabled]) {
+    &:hover,
+    &:active {
+      background: none;
+      border: none;
+      color: inherit;
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.15;
+    cursor: not-allowed;
+  }
+
+  .touchevents &:hover {
+    border-color: initial;
+    color: initial;
+  }
+
+
   @include svg-color($nypr-player-button-color);
   display: flex;
   height: 100%;

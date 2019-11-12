@@ -16,6 +16,49 @@
     }
 }
 
+@mixin btn {
+  appearance: none;
+  position: relative; // for transition icons
+  display: inline-block;
+  border-radius: 25px;
+  border: 2px solid;
+  border-color: rgba($nypr-player-spinner-accent-color, 0.2);
+
+  padding: 0px 13px;
+  color:  $nypr-player-spinner-accent-color;
+  background: transparent;
+  font-size: 14px;
+  line-height: 34px;
+
+  cursor: pointer;
+
+  transition:
+   opacity $transition-timing,
+   background-color $transition-timing,
+   border-color $transition-timing,
+   color $transition-timing;
+
+  &:hover,
+  &:active {
+   border-color: rgba($nypr-player-spinner-accent-color, 0.2);
+   color: $nypr-player-spinner-accent-color;
+   opacity: 1;
+  }
+
+  &[disabled] {
+   opacity: 0.15;
+   cursor: not-allowed;
+  }
+
+  .touchevents &:hover {
+   border-color: initial;
+   color: initial;
+  }
+
+  > * {
+   pointer-events: none;
+  }
+}
 
 @mixin spinner(
   $primary: $nypr-player-spinner-primary-color,

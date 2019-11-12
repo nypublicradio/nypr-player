@@ -1,0 +1,13 @@
+<DocsViewer as |viewer|>
+  <viewer.nav as |nav|>
+    <nav.section @label="Introduction"/>
+
+    <nav.item @label="Basics" @route="docs.basic-usage"/>
+    <nav.item @label="Advanced" @route="docs.advanced"/>
+
+  </viewer.nav>
+
+  <viewer.main>
+    {{outlet}}
+  </viewer.main>
+</DocsViewer>

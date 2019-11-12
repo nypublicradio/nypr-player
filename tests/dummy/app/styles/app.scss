@@ -7,7 +7,6 @@ $site-chrome-link-color: blue;
 $site-chrome-link-hover: gray;
 
 @import "nypr-player";
-@import "nypr-ui/site-chrome";
 
 .site-chrome__left-corner {
   @media (min-width: 800px) {
