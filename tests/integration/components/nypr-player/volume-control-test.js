@@ -8,5 +8,5 @@ moduleForComponent('nypr-player/volume-control', 'Integration | Component | nypr
 test('it renders', function(assert) {
   this.render(hbs`{{nypr-player/volume-control}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), 'Toggle Mute');
 });

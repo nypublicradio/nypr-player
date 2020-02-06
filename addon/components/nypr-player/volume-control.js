@@ -3,11 +3,12 @@ import layout from '../../templates/components/nypr-player/volume-control';
 import { get, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { htmlSafe } from '@ember/string';
+import KeyboardCommandMixin from '../../mixins/keyboard-command-mixin';
 
-export default Component.extend({
+export default Component.extend(KeyboardCommandMixin, {
   layout,
   classNames: ['nypr-player-volume'],
-  classNameBindings: ['isMuted'],
+  classNameBindings: ['isMuted', 'isChangingVolume:active'],
   volumeInPercent: computed('volume', 'isMuted', {
     get() {
       if (get(this, 'isMuted')) {
@@ -63,5 +64,25 @@ export default Component.extend({
     toggleMute() {
       get(this, 'toggleMute')();
     }
-  }
+  },
+
+  keyboardKeys: {
+    volumeUp: ['ArrowRight'],
+    volumeDown: ['ArrowLeft']
+  },
+
+  keyboardCommands: {
+    volumeUp: {
+      keydown() {
+        get(this, 'setVolume')(get(this, 'volumeInPercent') + 6);
+        return false;
+      }
+    },
+    volumeDown: {
+      keydown() {
+        get(this, 'setVolume')(get(this, 'volumeInPercent') - 6);
+        return false;
+      }
+    }
+  },
 });

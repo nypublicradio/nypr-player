@@ -147,7 +147,8 @@
 
     .touchevents &,
     .is-dragging &,
-    .nypr-player-progress:hover & {
+    .nypr-player-progress:hover &,
+    .nypr-player-progress:focus & {
       transform: scale(0.7, 0.7);
     }
   }
@@ -165,7 +166,7 @@
 
 /* Hidden in mobile */
 
-.nypr-player-button.mod-volume {
+.nypr-player-volume-control {
   display: none;
   background-image: none;
 
