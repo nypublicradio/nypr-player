@@ -3692,6 +3692,15 @@ ember-holygrail-layout@^0.3.0:
     ember-cli-htmlbars "^2.0.1"
     ember-cli-htmlbars-inline-precompile "^1.0.0"
 
+ember-holygrail-layout@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-holygrail-layout/-/ember-holygrail-layout-0.3.1.tgz#3e15859c1bf873e0c6509f98e19209f4c1e02a19"
+  integrity sha512-VU29nah+Zvaa0z1T5ipVutS532o7x98o6QyxwWvSFWjCLpEAQj+s/dylFHFaIAFAEXzhzFERte9E5V1LHzDvdQ==
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-cli-htmlbars-inline-precompile "^1.0.0"
+
 ember-lifeline@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ember-lifeline/-/ember-lifeline-2.0.0.tgz#ab2dadd3eed585605d1c4137c64aacec4d241c8e"
@@ -8991,8 +9000,9 @@ websocket-driver@>=0.5.1:
     websocket-extensions ">=0.1.1"
 
 websocket-extensions@>=0.1.1:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
+  integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
 which-module@^1.0.0:
   version "1.0.0"
