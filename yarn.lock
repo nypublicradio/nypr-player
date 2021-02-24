@@ -3135,8 +3135,9 @@ detective@^4.3.1:
     defined "^1.0.0"
 
 diff@^3.2.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/diff/-/diff-3.4.0.tgz#b1d85507daf3964828de54b37d0d73ba67dda56c"
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
+  integrity sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
 
 doctrine@^2.1.0:
   version "2.1.0"
@@ -3687,6 +3688,15 @@ ember-hifi@^1.15.1:
 ember-holygrail-layout@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/ember-holygrail-layout/-/ember-holygrail-layout-0.3.0.tgz#6244f5696495fcb8530bacba633d27cf10cbd6e5"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-cli-htmlbars-inline-precompile "^1.0.0"
+
+ember-holygrail-layout@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-holygrail-layout/-/ember-holygrail-layout-0.3.1.tgz#3e15859c1bf873e0c6509f98e19209f4c1e02a19"
+  integrity sha512-VU29nah+Zvaa0z1T5ipVutS532o7x98o6QyxwWvSFWjCLpEAQj+s/dylFHFaIAFAEXzhzFERte9E5V1LHzDvdQ==
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
