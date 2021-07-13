@@ -24,7 +24,7 @@
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-moment-shim": "^3.4.0",
     "ember-cli-sass": "^7.0.0",
-    "ember-hifi": "^1.15.1",
+    "ember-hifi": "https://github.com/nypublicradio/ember-hifi#4ba77e3",
     "ember-moment": "^7.4.1",
     "nypr-ui": "^0.5.0"
   },
