@@ -1,5 +1,8 @@
 # nypr-player Changelog
 
+## 0.4.4
+- [ENHANCEMENT] Update ember-hifi to 1.19.0
+
 ## 0.4.3
 - [BUGFIX] Update component invocation (from `(component 'nypr-player.queue-button')` to `(component 'nypr-player/queue-button')` and referenced version of `ember-holygrail-layout` so this addon works in newer ember versions.
 
