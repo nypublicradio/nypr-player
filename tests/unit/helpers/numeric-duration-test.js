@@ -8,18 +8,18 @@ test('it displays the correct time', function(assert) {
   let testCases = [{
     description: 'should display correct time for 0',
     inputMs: 0,
-    expected: '0:00'
+    expected: '00:00'
   },{    description: 'should display correct time for seconds < 10',
     inputMs: 1 * 1000,
-    expected: '0:01'
+    expected: '00:01'
   },{
     description: 'should display correct time for seconds > 10',
     inputMs: 10 * 1000,
-    expected: '0:10'
+    expected: '00:10'
   },{
     description: 'should display correct time for minutes < 10',
     inputMs: 1 * 60 * 1000,
-    expected: '1:00'
+    expected: '01:00'
   },{
     description: 'should display correct time for minutes > 10',
     inputMs: 10 * 60 * 1000,

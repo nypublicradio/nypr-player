@@ -18,7 +18,7 @@ test('it displays the correct timestamps', function(assert) {
   this.set('duration', 1 * 60 * 60 * 1000);
   this.render(hbs`{{nypr-player/time-label position=position duration=duration}}`);
 
-  const expectedPosition = '0:01';
+  const expectedPosition = '00:01';
   const expectedTotal = '1:00:00';
   assert.equal(this.$('.timelabel-position').text(), expectedPosition, 'position should be correct');
   assert.equal(this.$('.timelabel-total').text(), expectedTotal, 'total should be correct');
